@@ -1,0 +1,691 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+    <head prefix="og: http://ogp.me/ns# book: http://ogp.me/ns/book#">
+        
+        <meta charset="UTF-8">
+        <title>I/O | Learn Guava</title>
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="robots" content="index, follow">
+        <meta name="author" content="xionglie">
+        <meta name="description" content="笔记的大部分翻译内容来源于以下">
+        <meta name="keywords" content="gitbook,github" >
+        <meta name="generator" content="www.gitbook.io">
+
+        
+        <link rel="next" href="../IO/ClosingResources.html" />
+        
+        
+        <link rel="prev" href="../Ranges/README.html" />
+        
+
+        <meta property="og:title" content="I/O | Learn Guava">
+        <meta property="og:site_name" content="Learn Guava">
+        <meta property="og:type" content="book">
+        <meta property="og:locale" content="en_US">
+
+        <meta property="book:author" content="https://github.com/xionglie">
+        <meta property="book:tag" content="GitBook">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    </head>
+    <body>
+        
+
+        <link rel="stylesheet" href="../gitbook/style.css">
+        
+
+
+        
+    <div class="book" data-github="xionglie/note-learning-guava" data-level="9" data-basepath=".." data-revision="1399366847872">
+    <div class="book-header">
+    <!-- Actions Left -->
+    
+    <a href="https://github.com/xionglie/note-learning-guava" target="_blank" class="btn pull-left"><i class="fa fa-github-alt"></i></a>
+    
+    <a href="#" class="btn pull-left toggle-summary"><i class="fa fa-align-justify"></i></a>
+    <a href="#" class="btn pull-left toggle-search"><i class="fa fa-search"></i></a>
+    <span id="font-settings-wrapper">
+        <a href="#" class="btn pull-left toggle-font-settings"><i class="fa fa-font"></i>
+        </a>
+        <div class="dropdown-menu font-settings">
+	<div class="dropdown-caret">
+  <span class="caret-outer"></span>
+  <span class="caret-inner"></span>
+</div>
+
+	<div class="btn-group btn-block">
+		<button id="reduce-font-size" class="btn btn-default">A</button>
+		<button id="enlarge-font-size" class="btn btn-default">A</button>
+	</div>
+
+	<ul class="list-group font-family-list">
+		<li class="list-group-item" data-font="0">Serif</li>
+		<li class="list-group-item" data-font="1">Sans</li>
+	</ul>
+
+	<div class="btn-group btn-group-xs btn-block color-theme-list">
+	  <button type="button" class="btn btn-default" id="color-theme-preview-0" data-theme="0">White</button>
+	  <button type="button" class="btn btn-default" id="color-theme-preview-1" data-theme="1">Sepia</button>
+	  <button type="button" class="btn btn-default" id="color-theme-preview-2" data-theme="2">Night</button>
+	</div>
+</div>
+
+    </span>
+
+    <!-- Actions Right -->
+    <a href="#" target="_blank" class="btn pull-right" data-sharing="google-plus"><i class="fa fa-google-plus"></i></a>
+    <a href="#" target="_blank" class="btn pull-right" data-sharing="facebook"><i class="fa fa-facebook"></i></a>
+    <a href="#" target="_blank" class="btn pull-right" data-sharing="twitter"><i class="fa fa-twitter"></i></a>
+
+    
+    <a href="https://github.com/xionglie/note-learning-guava/stargazers" target="_blank" class="btn pull-right count-star"><i class="fa fa-star-o"></i> Star (<span>-</span>)</a>
+    <a href="https://github.com/xionglie/note-learning-guava/watchers" target="_blank" class="btn pull-right count-watch"><i class="fa fa-eye"></i> Watch (<span>-</span>)</a>
+    
+
+    <!-- Title -->
+    <h1><a href="../" >Learn Guava</a></h1>
+</div>
+
+    <div class="book-summary">
+    <div class="book-search">
+        <input type="text" placeholder="Search" class="form-control" />
+    </div>
+    <ul class="summary">
+        
+        <li>
+            <a href="https://github.com/xionglie" target="blank">About the author</a>
+        </li>
+        <li>
+            <a href="https://github.com/xionglie/note-learning-guava/issues" target="blank">Questions and Issues</a>
+        </li>
+        <li>
+            <a href="https://github.com/xionglie/note-learning-guava/edit/master/IO/README.md" target="blank">Edit and Contribute</a>
+        </li>
+        <li class="divider"></li>
+        
+        <li data-level="0" data-path="index.html">
+            <a href="../"><i class="fa fa-check"></i> Introduction</a>
+        </li>
+        
+            <li  data-level="1" data-path="BasicUtilities/README.html">
+                
+                <a href="../BasicUtilities/README.html">
+                    <i class="fa fa-check"></i> <b>1.</b> 基本工具 Basic Utilities
+                </a>
+                
+                
+                <ul class="articles">
+                    
+                        <li  data-level="1.1" data-path="BasicUtilities/UsingAndAvoidingNull.html">
+                            
+                            <a href="../BasicUtilities/UsingAndAvoidingNull.html">
+                                <i class="fa fa-check"></i> <b>1.1.</b> Using and avoiding null
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="1.2" data-path="BasicUtilities/Preconditions.html">
+                            
+                            <a href="../BasicUtilities/Preconditions.html">
+                                <i class="fa fa-check"></i> <b>1.2.</b> Preconditions
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="1.3" data-path="BasicUtilities/Ordering.html">
+                            
+                            <a href="../BasicUtilities/Ordering.html">
+                                <i class="fa fa-check"></i> <b>1.3.</b> Ordering
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="1.4" data-path="BasicUtilities/ObjectCommonUtilities.html">
+                            
+                            <a href="../BasicUtilities/ObjectCommonUtilities.html">
+                                <i class="fa fa-check"></i> <b>1.4.</b> Object common methods
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="1.5" data-path="BasicUtilities/Throwables.html">
+                            
+                            <a href="../BasicUtilities/Throwables.html">
+                                <i class="fa fa-check"></i> <b>1.5.</b> Throwables
+                            </a>
+                            
+                        </li>
+                    
+                </ul>
+                
+            </li>
+        
+            <li  data-level="2" data-path="Collections/README.html">
+                
+                <a href="../Collections/README.html">
+                    <i class="fa fa-check"></i> <b>2.</b> 集合 Collections
+                </a>
+                
+                
+                <ul class="articles">
+                    
+                        <li  data-level="2.1" data-path="Collections/ImmutableCollections.html">
+                            
+                            <a href="../Collections/ImmutableCollections.html">
+                                <i class="fa fa-check"></i> <b>2.1.</b> Immutable collections
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="2.2" data-path="Collections/NewCollectionTypes.html">
+                            
+                            <a href="../Collections/NewCollectionTypes.html">
+                                <i class="fa fa-check"></i> <b>2.2.</b> New Collection Types
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="2.3" data-path="Collections/UtilityClasses.html">
+                            
+                            <a href="../Collections/UtilityClasses.html">
+                                <i class="fa fa-check"></i> <b>2.3.</b> Utility Classes
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="2.4" data-path="Collections/ExtensionUtilities.html">
+                            
+                            <a href="../Collections/ExtensionUtilities.html">
+                                <i class="fa fa-check"></i> <b>2.4.</b> Extension Utilities
+                            </a>
+                            
+                        </li>
+                    
+                </ul>
+                
+            </li>
+        
+            <li  data-level="3" data-path="Caches/README.html">
+                
+                <a href="../Caches/README.html">
+                    <i class="fa fa-check"></i> <b>3.</b> 缓存[Caches]
+                </a>
+                
+                
+            </li>
+        
+            <li  data-level="4" data-path="FunctionalIdioms/README.html">
+                
+                <a href="../FunctionalIdioms/README.html">
+                    <i class="fa fa-check"></i> <b>4.</b> 函数式风格[Functional idioms]
+                </a>
+                
+                
+            </li>
+        
+            <li  data-level="5" data-path="Concurrency/README.html">
+                
+                <a href="../Concurrency/README.html">
+                    <i class="fa fa-check"></i> <b>5.</b> 并发[Concurrency]
+                </a>
+                
+                
+            </li>
+        
+            <li  data-level="6" data-path="Strings/README.html">
+                
+                <a href="../Strings/README.html">
+                    <i class="fa fa-check"></i> <b>6.</b> 字符串处理[Strings]
+                </a>
+                
+                
+            </li>
+        
+            <li  data-level="7" data-path="Primitives/README.html">
+                
+                <a href="../Primitives/README.html">
+                    <i class="fa fa-check"></i> <b>7.</b> 原生类型[Primitives]
+                </a>
+                
+                
+            </li>
+        
+            <li  data-level="8" data-path="Ranges/README.html">
+                
+                <a href="../Ranges/README.html">
+                    <i class="fa fa-check"></i> <b>8.</b> 区间[Ranges]
+                </a>
+                
+                
+            </li>
+        
+            <li  data-level="9" data-path="IO/README.html">
+                
+                <a href="../IO/README.html">
+                    <i class="fa fa-check"></i> <b>9.</b> I/O
+                </a>
+                
+                
+                <ul class="articles">
+                    
+                        <li  data-level="9.1" data-path="IO/ClosingResources.html">
+                            
+                            <a href="../IO/ClosingResources.html">
+                                <i class="fa fa-check"></i> <b>9.1.</b> 关闭资源ClosingResources
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="9.2" data-path="IO/Files.html">
+                            
+                            <a href="../IO/Files.html">
+                                <i class="fa fa-check"></i> <b>9.2.</b> Files类常用方法
+                            </a>
+                            
+                        </li>
+                    
+                </ul>
+                
+            </li>
+        
+            <li  data-level="10" data-path="Hash/README.html">
+                
+                <a href="../Hash/README.html">
+                    <i class="fa fa-check"></i> <b>10.</b> 散列[Hash]
+                </a>
+                
+                
+            </li>
+        
+            <li  data-level="11" data-path="EventBus/README.html">
+                
+                <a href="../EventBus/README.html">
+                    <i class="fa fa-check"></i> <b>11.</b> 事件总线[EventBus]
+                </a>
+                
+                
+            </li>
+        
+            <li  data-level="12" data-path="Math/README.html">
+                
+                <a href="../Math/README.html">
+                    <i class="fa fa-check"></i> <b>12.</b> 数学运算[Math]
+                </a>
+                
+                
+            </li>
+        
+            <li  data-level="13" data-path="Reflection/README.html">
+                
+                <a href="../Reflection/README.html">
+                    <i class="fa fa-check"></i> <b>13.</b> 反射[Reflection]
+                </a>
+                
+                
+            </li>
+        
+    </ul>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="page-wrapper" tabindex="-1">
+                <div class="book-progress">
+    <div class="bar">
+        <div class="inner" style="width: 91.66666666666667%;min-width: 87.5%;"></div>
+    </div>
+    <div class="chapters">
+    
+        <a href="../index.html" title="Introduction" class="chapter done new-chapter" data-progress="0" style="left: 0%;"></a>
+    
+        <a href="../BasicUtilities/README.html" title="基本工具 Basic Utilities" class="chapter done new-chapter" data-progress="1" style="left: 4.166666666666667%;"></a>
+    
+        <a href="../BasicUtilities/UsingAndAvoidingNull.html" title="Using and avoiding null" class="chapter done " data-progress="1.1" style="left: 8.333333333333334%;"></a>
+    
+        <a href="../BasicUtilities/Preconditions.html" title="Preconditions" class="chapter done " data-progress="1.2" style="left: 12.5%;"></a>
+    
+        <a href="../BasicUtilities/Ordering.html" title="Ordering" class="chapter done " data-progress="1.3" style="left: 16.666666666666668%;"></a>
+    
+        <a href="../BasicUtilities/ObjectCommonUtilities.html" title="Object common methods" class="chapter done " data-progress="1.4" style="left: 20.833333333333332%;"></a>
+    
+        <a href="../BasicUtilities/Throwables.html" title="Throwables" class="chapter done " data-progress="1.5" style="left: 25%;"></a>
+    
+        <a href="../Hash/README.html" title="散列[Hash]" class="chapter done " data-progress="10" style="left: 29.166666666666668%;"></a>
+    
+        <a href="../EventBus/README.html" title="事件总线[EventBus]" class="chapter done " data-progress="11" style="left: 33.333333333333336%;"></a>
+    
+        <a href="../Math/README.html" title="数学运算[Math]" class="chapter done " data-progress="12" style="left: 37.5%;"></a>
+    
+        <a href="../Reflection/README.html" title="反射[Reflection]" class="chapter done " data-progress="13" style="left: 41.666666666666664%;"></a>
+    
+        <a href="../Collections/README.html" title="集合 Collections" class="chapter done new-chapter" data-progress="2" style="left: 45.833333333333336%;"></a>
+    
+        <a href="../Collections/ImmutableCollections.html" title="Immutable collections" class="chapter done " data-progress="2.1" style="left: 50%;"></a>
+    
+        <a href="../Collections/NewCollectionTypes.html" title="New Collection Types" class="chapter done " data-progress="2.2" style="left: 54.166666666666664%;"></a>
+    
+        <a href="../Collections/UtilityClasses.html" title="Utility Classes" class="chapter done " data-progress="2.3" style="left: 58.333333333333336%;"></a>
+    
+        <a href="../Collections/ExtensionUtilities.html" title="Extension Utilities" class="chapter done " data-progress="2.4" style="left: 62.5%;"></a>
+    
+        <a href="../Caches/README.html" title="缓存[Caches]" class="chapter done new-chapter" data-progress="3" style="left: 66.66666666666667%;"></a>
+    
+        <a href="../FunctionalIdioms/README.html" title="函数式风格[Functional idioms]" class="chapter done new-chapter" data-progress="4" style="left: 70.83333333333333%;"></a>
+    
+        <a href="../Concurrency/README.html" title="并发[Concurrency]" class="chapter done new-chapter" data-progress="5" style="left: 75%;"></a>
+    
+        <a href="../Strings/README.html" title="字符串处理[Strings]" class="chapter done new-chapter" data-progress="6" style="left: 79.16666666666667%;"></a>
+    
+        <a href="../Primitives/README.html" title="原生类型[Primitives]" class="chapter done new-chapter" data-progress="7" style="left: 83.33333333333333%;"></a>
+    
+        <a href="../Ranges/README.html" title="区间[Ranges]" class="chapter done new-chapter" data-progress="8" style="left: 87.5%;"></a>
+    
+        <a href="../IO/README.html" title="I/O" class="chapter done new-chapter" data-progress="9" style="left: 91.66666666666667%;"></a>
+    
+        <a href="../IO/ClosingResources.html" title="关闭资源ClosingResources" class="chapter  " data-progress="9.1" style="left: 95.83333333333333%;"></a>
+    
+        <a href="../IO/Files.html" title="Files类常用方法" class="chapter  " data-progress="9.2" style="left: 100%;"></a>
+    
+    </div>
+</div>
+
+                <div class="page-inner">
+                
+                    <section class="normal" id="section-gitbook_3">
+                    
+                        <h1 id="i-o">I/O</h1>
+<h1 id="-bytestreams-and-charstreams">字节流和字符流ByteStreams and CharStreams</h1>
+<p>Guava使用术语”流” 来表示可关闭的，并且在底层资源中有位置状态的I/O数据流。术语”字节流”指的是InputStream或OutputStream，”字符流”指的是Reader 或Writer（虽然他们的接口Readable 和Appendable被更多地用于方法参数）。相应的工具方法分别在<a href="http://docs.guava-libraries.googlecode.com/git-history/release/javadoc/com/google/common/io/ByteStreams.html" target="_blank">ByteStreams</a>和<a href="http://docs.guava-libraries.googlecode.com/git-history/release/javadoc/com/google/common/io/CharStreams.html" target="_blank">CharStreams</a>中。</p>
+<p>大多数Guava流工具一次处理一个完整的流，并且/或者为了效率自己处理缓冲。还要注意到，接受流为参数的Guava方法不会关闭这个流：关闭流的职责通常属于打开流的代码块。</p>
+<p>其中的一些工具方法列举如下</p>
+<table>
+<thead>
+<tr>
+<th>ByteStreams</th>
+<th>CharStreams</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>byte[] toByteArray(InputStream)</td>
+<td>String toString(Readable)</td>
+</tr>
+<tr>
+<td>N/A</td>
+<td>List<String> readLines(Readable)</td>
+</tr>
+<tr>
+<td>long copy(InputStream, OutputStream)</td>
+<td>long copy(Readable, Appendable)</td>
+</tr>
+<tr>
+<td>void readFully(InputStream, byte[])</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>void skipFully(InputStream, long)</td>
+<td>void skipFully(Reader, long)</td>
+</tr>
+<tr>
+<td>OutputStream nullOutputStream()</td>
+<td>Writer nullWriter()</td>
+</tr>
+</tbody>
+</table>
+<p>关于InputSupplier 和OutputSupplier要注意：</p>
+<p>在ByteStreams、CharStreams以及com.google.common.io包中的一些其他类中，某些方法仍然在使用InputSupplier和OutputSupplier接口。这两个借口和相关的方法是不推荐使用的：它们已经被下面描述的source和sink类型取代了，并且最终会被移除。</p>
+<h1 id="-sources-and-sinks">源与汇Sources and sinks</h1>
+<p>通常我们都会创建I/O工具方法，这样可以避免在做基础运算时总是直接和流打交道。例如，Guava有Files.toByteArray(File) 和Files.write(File, byte[])。然而，流工具方法的创建经常最终导致散落各处的相似方法，每个方法读取不同类型的源</p>
+<p>或写入不同类型的汇[sink]。例如，Guava中的Resources.toByteArray(URL)和Files.toByteArray(File)做了同样的事情，只不过数据源一个是URL，一个是文件。</p>
+<p>为了解决这个问题，Guava有一系列关于源与汇的抽象。源或汇指某个你知道如何从中打开流的资源，比如File或URL。源是可读的，汇是可写的。此外，源与汇按照字节和字符划分类型。</p>
+<table>
+<thead>
+<tr>
+<th>-</th>
+<th>字节</th>
+<th>字符</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>读</td>
+<td>[ByteSource][]</td>
+<td>CharSource</td>
+</tr>
+<tr>
+<td>写</td>
+<td>ByteSink</td>
+<td>CharSink</td>
+</tr>
+</tbody>
+</table>
+<p>源与汇API的好处是它们提供了通用的一组操作。比如，一旦你把数据源包装成了ByteSource，无论它原先的类型是什么，你都得到了一组按字节操作的方法。</p>
+<h2 id="-">创建源与汇</h2>
+<p>Guava提供了若干源与汇的实现：</p>
+<table>
+<thead>
+<tr>
+<th>字节</th>
+<th>字符</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Files.asByteSource(File)</td>
+<td>Files.asCharSource(File, Charset)</td>
+</tr>
+<tr>
+<td>Files.asByteSink(File, FileWriteMode...)</td>
+<td>Files.asCharSink(File, Charset, FileWriteMode...)</td>
+</tr>
+<tr>
+<td>Resources.asByteSource(URL)</td>
+<td>Resources.asCharSource(URL, Charset)</td>
+</tr>
+<tr>
+<td>ByteSource.wrap(byte[])</td>
+<td>CharSource.wrap(CharSequence)</td>
+</tr>
+<tr>
+<td>ByteSource.concat(ByteSource...)</td>
+<td>CharSource.concat(CharSource...)</td>
+</tr>
+<tr>
+<td>ByteSource.slice(long, long)</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>N/A</td>
+<td>ByteSource.asCharSource(Charset)</td>
+</tr>
+<tr>
+<td>N/A</td>
+<td>ByteSink.asCharSink(Charset)</td>
+</tr>
+</tbody>
+</table>
+<p>此外，你也可以继承这些类，以创建新的实现。</p>
+<p>注：把已经打开的流（比如InputStream）包装为源或汇听起来是很有诱惑力的，但是应该避免这样做。源与汇的实现应该在每次openStream()方法被调用时都创建一个新的流。始终创建新的流可以让源或汇管理流的整个生命周期，并且让多次调用openStream()返回的流都是可用的。此外，如果你在创建源或汇之前创建了流，你不得不在异常的时候自己保证关闭流，这压根就违背了发挥源与汇API优点的初衷。</p>
+<h2 id="-">使用源与汇</h2>
+<p>一旦有了源与汇的实例，就可以进行若干读写操作。</p>
+<h3 id="-">通用操作</h3>
+<p>所有源与汇都有一些方法用于打开新的流用于读或写。默认情况下，其他源与汇操作都是先用这些方法打开流，然后做一些读或写，最后保证流被正确地关闭了。这些方法列举如下：</p>
+<p>openStream()：根据源与汇的类型，返回InputStream、OutputStream、Reader或者Writer。
+openBufferedStream()：根据源与汇的类型，返回InputStream、OutputStream、BufferedReader或者BufferedWriter。返回的流保证在必要情况下做了缓冲。例如，从字节数组读数据的源就没有必要再在内存中作缓冲，这就是为什么该方法针对字节源不返回BufferedInputStream。字符源属于例外情况，它一定返回BufferedReader，因为BufferedReader中才有readLine()方法。</p>
+<h3 id="-">源操作</h3>
+<table>
+<thead>
+<tr>
+<th>字节源</th>
+<th>字符源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>byte[]   read()</td>
+<td>String   read()</td>
+</tr>
+<tr>
+<td>N/A</td>
+<td>ImmutableList<String>   readLines()</td>
+</tr>
+<tr>
+<td>N/A</td>
+<td>String   readFirstLine()</td>
+</tr>
+<tr>
+<td>long   copyTo(ByteSink)</td>
+<td>long   copyTo(CharSink)</td>
+</tr>
+<tr>
+<td>long   copyTo(OutputStream)</td>
+<td>long   copyTo(Appendable)</td>
+</tr>
+<tr>
+<td>long   size() (in bytes)</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>boolean   isEmpty()</td>
+<td>boolean   isEmpty()</td>
+</tr>
+<tr>
+<td>boolean   contentEquals(ByteSource)</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>HashCode   hash(HashFunction)</td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+<h3 id="-">汇操作</h3>
+<table>
+<thead>
+<tr>
+<th>字节汇</th>
+<th>字符汇</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>void write(byte[])</td>
+<td>void write(CharSequence)</td>
+</tr>
+<tr>
+<td>long writeFrom(InputStream)</td>
+<td>long writeFrom(Readable)</td>
+</tr>
+<tr>
+<td>N/A</td>
+<td>void writeLines(Iterable&lt;? extends CharSequence&gt;)</td>
+</tr>
+<tr>
+<td>N/A</td>
+<td>void writeLines(Iterable&lt;? extends CharSequence&gt;, String)</td>
+</tr>
+</tbody>
+</table>
+<p>Examples</p>
+<pre><code class="lang-java"><span class="hljs-comment">// Read the lines of a UTF-8 text file</span>
+ImmutableList&lt;String&gt; lines = Files.asCharSource(file, Charsets.UTF_8)
+    .readLines();
+
+<span class="hljs-comment">// Count distinct word occurrences in a file</span>
+Multiset&lt;String&gt; wordOccurrences = HashMultiset.create(
+  Splitter.on(CharMatcher.WHITESPACE)
+    .trimResults()
+    .omitEmptyStrings()
+    .split(Files.asCharSource(file, Charsets.UTF_8).read()));
+
+<span class="hljs-comment">// SHA-1 a file</span>
+HashCode hash = Files.asByteSource(file).hash(Hashing.sha1());
+
+<span class="hljs-comment">// Copy the data from a URL to a file</span>
+Resources.asByteSource(url).copyTo(Files.asByteSink(file));
+</code></pre>
+<h1 id="-">文件操作</h1>
+<p>除了创建文件源和文件的方法，<a href="http://docs.guava-libraries.googlecode.com/git-history/release/javadoc/com/google/common/io/Files.html" target="_blank">Files</a>类还包含了若干你可能感兴趣的便利方法。</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>createParentDirs(File)</td>
+<td>必要时为文件创建父目录</td>
+</tr>
+<tr>
+<td>getFileExtension(String)</td>
+<td>返回给定路径所表示文件的扩展名</td>
+</tr>
+<tr>
+<td>getNameWithoutExtension(String)</td>
+<td>返回去除了扩展名的文件名</td>
+</tr>
+<tr>
+<td>simplifyPath(String)</td>
+<td>规范文件路径，并不总是与文件系统一致，请仔细测试</td>
+</tr>
+<tr>
+<td>fileTreeTraverser()</td>
+<td>返回TreeTraverser用于遍历文件树</td>
+</tr>
+</tbody>
+</table>
+<p>（全文完）</p>
+
+                    
+                    </section>
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../Ranges/README.html" class="navigation navigation-prev"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../IO/ClosingResources.html" class="navigation navigation-next"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.1.3/ace.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.1.3/mode-javascript.js"></script>
+        <script src="../gitbook/jsrepl/jsrepl.js" id="jsrepl-script"></script>
+        <script src="../gitbook/app.js"></script>
+        
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-mixpanel/plugin.js"></script>
+    
+
+    
+    <script src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-mathjax/plugin.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {};
+    gitbook.start(config);
+});
+</script>
+
+    </body>
+</html>

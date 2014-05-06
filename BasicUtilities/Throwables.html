@@ -1,0 +1,587 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+    <head prefix="og: http://ogp.me/ns# book: http://ogp.me/ns/book#">
+        
+        <meta charset="UTF-8">
+        <title>Throwables | Learn Guava</title>
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="robots" content="index, follow">
+        <meta name="author" content="xionglie">
+        <meta name="description" content="笔记的大部分翻译内容来源于以下">
+        <meta name="keywords" content="gitbook,github" >
+        <meta name="generator" content="www.gitbook.io">
+
+        
+        <link rel="next" href="../Collections/README.html" />
+        
+        
+        <link rel="prev" href="../BasicUtilities/ObjectCommonUtilities.html" />
+        
+
+        <meta property="og:title" content="Throwables | Learn Guava">
+        <meta property="og:site_name" content="Learn Guava">
+        <meta property="og:type" content="book">
+        <meta property="og:locale" content="en_US">
+
+        <meta property="book:author" content="https://github.com/xionglie">
+        <meta property="book:tag" content="GitBook">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    </head>
+    <body>
+        
+
+        <link rel="stylesheet" href="../gitbook/style.css">
+        
+
+
+        
+    <div class="book" data-github="xionglie/note-learning-guava" data-level="1.5" data-basepath=".." data-revision="1399366847872">
+    <div class="book-header">
+    <!-- Actions Left -->
+    
+    <a href="https://github.com/xionglie/note-learning-guava" target="_blank" class="btn pull-left"><i class="fa fa-github-alt"></i></a>
+    
+    <a href="#" class="btn pull-left toggle-summary"><i class="fa fa-align-justify"></i></a>
+    <a href="#" class="btn pull-left toggle-search"><i class="fa fa-search"></i></a>
+    <span id="font-settings-wrapper">
+        <a href="#" class="btn pull-left toggle-font-settings"><i class="fa fa-font"></i>
+        </a>
+        <div class="dropdown-menu font-settings">
+	<div class="dropdown-caret">
+  <span class="caret-outer"></span>
+  <span class="caret-inner"></span>
+</div>
+
+	<div class="btn-group btn-block">
+		<button id="reduce-font-size" class="btn btn-default">A</button>
+		<button id="enlarge-font-size" class="btn btn-default">A</button>
+	</div>
+
+	<ul class="list-group font-family-list">
+		<li class="list-group-item" data-font="0">Serif</li>
+		<li class="list-group-item" data-font="1">Sans</li>
+	</ul>
+
+	<div class="btn-group btn-group-xs btn-block color-theme-list">
+	  <button type="button" class="btn btn-default" id="color-theme-preview-0" data-theme="0">White</button>
+	  <button type="button" class="btn btn-default" id="color-theme-preview-1" data-theme="1">Sepia</button>
+	  <button type="button" class="btn btn-default" id="color-theme-preview-2" data-theme="2">Night</button>
+	</div>
+</div>
+
+    </span>
+
+    <!-- Actions Right -->
+    <a href="#" target="_blank" class="btn pull-right" data-sharing="google-plus"><i class="fa fa-google-plus"></i></a>
+    <a href="#" target="_blank" class="btn pull-right" data-sharing="facebook"><i class="fa fa-facebook"></i></a>
+    <a href="#" target="_blank" class="btn pull-right" data-sharing="twitter"><i class="fa fa-twitter"></i></a>
+
+    
+    <a href="https://github.com/xionglie/note-learning-guava/stargazers" target="_blank" class="btn pull-right count-star"><i class="fa fa-star-o"></i> Star (<span>-</span>)</a>
+    <a href="https://github.com/xionglie/note-learning-guava/watchers" target="_blank" class="btn pull-right count-watch"><i class="fa fa-eye"></i> Watch (<span>-</span>)</a>
+    
+
+    <!-- Title -->
+    <h1><a href="../" >Learn Guava</a></h1>
+</div>
+
+    <div class="book-summary">
+    <div class="book-search">
+        <input type="text" placeholder="Search" class="form-control" />
+    </div>
+    <ul class="summary">
+        
+        <li>
+            <a href="https://github.com/xionglie" target="blank">About the author</a>
+        </li>
+        <li>
+            <a href="https://github.com/xionglie/note-learning-guava/issues" target="blank">Questions and Issues</a>
+        </li>
+        <li>
+            <a href="https://github.com/xionglie/note-learning-guava/edit/master/BasicUtilities/Throwables.md" target="blank">Edit and Contribute</a>
+        </li>
+        <li class="divider"></li>
+        
+        <li data-level="0" data-path="index.html">
+            <a href="../"><i class="fa fa-check"></i> Introduction</a>
+        </li>
+        
+            <li  data-level="1" data-path="BasicUtilities/README.html">
+                
+                <a href="../BasicUtilities/README.html">
+                    <i class="fa fa-check"></i> <b>1.</b> 基本工具 Basic Utilities
+                </a>
+                
+                
+                <ul class="articles">
+                    
+                        <li  data-level="1.1" data-path="BasicUtilities/UsingAndAvoidingNull.html">
+                            
+                            <a href="../BasicUtilities/UsingAndAvoidingNull.html">
+                                <i class="fa fa-check"></i> <b>1.1.</b> Using and avoiding null
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="1.2" data-path="BasicUtilities/Preconditions.html">
+                            
+                            <a href="../BasicUtilities/Preconditions.html">
+                                <i class="fa fa-check"></i> <b>1.2.</b> Preconditions
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="1.3" data-path="BasicUtilities/Ordering.html">
+                            
+                            <a href="../BasicUtilities/Ordering.html">
+                                <i class="fa fa-check"></i> <b>1.3.</b> Ordering
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="1.4" data-path="BasicUtilities/ObjectCommonUtilities.html">
+                            
+                            <a href="../BasicUtilities/ObjectCommonUtilities.html">
+                                <i class="fa fa-check"></i> <b>1.4.</b> Object common methods
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="1.5" data-path="BasicUtilities/Throwables.html">
+                            
+                            <a href="../BasicUtilities/Throwables.html">
+                                <i class="fa fa-check"></i> <b>1.5.</b> Throwables
+                            </a>
+                            
+                        </li>
+                    
+                </ul>
+                
+            </li>
+        
+            <li  data-level="2" data-path="Collections/README.html">
+                
+                <a href="../Collections/README.html">
+                    <i class="fa fa-check"></i> <b>2.</b> 集合 Collections
+                </a>
+                
+                
+                <ul class="articles">
+                    
+                        <li  data-level="2.1" data-path="Collections/ImmutableCollections.html">
+                            
+                            <a href="../Collections/ImmutableCollections.html">
+                                <i class="fa fa-check"></i> <b>2.1.</b> Immutable collections
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="2.2" data-path="Collections/NewCollectionTypes.html">
+                            
+                            <a href="../Collections/NewCollectionTypes.html">
+                                <i class="fa fa-check"></i> <b>2.2.</b> New Collection Types
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="2.3" data-path="Collections/UtilityClasses.html">
+                            
+                            <a href="../Collections/UtilityClasses.html">
+                                <i class="fa fa-check"></i> <b>2.3.</b> Utility Classes
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="2.4" data-path="Collections/ExtensionUtilities.html">
+                            
+                            <a href="../Collections/ExtensionUtilities.html">
+                                <i class="fa fa-check"></i> <b>2.4.</b> Extension Utilities
+                            </a>
+                            
+                        </li>
+                    
+                </ul>
+                
+            </li>
+        
+            <li  data-level="3" data-path="Caches/README.html">
+                
+                <a href="../Caches/README.html">
+                    <i class="fa fa-check"></i> <b>3.</b> 缓存[Caches]
+                </a>
+                
+                
+            </li>
+        
+            <li  data-level="4" data-path="FunctionalIdioms/README.html">
+                
+                <a href="../FunctionalIdioms/README.html">
+                    <i class="fa fa-check"></i> <b>4.</b> 函数式风格[Functional idioms]
+                </a>
+                
+                
+            </li>
+        
+            <li  data-level="5" data-path="Concurrency/README.html">
+                
+                <a href="../Concurrency/README.html">
+                    <i class="fa fa-check"></i> <b>5.</b> 并发[Concurrency]
+                </a>
+                
+                
+            </li>
+        
+            <li  data-level="6" data-path="Strings/README.html">
+                
+                <a href="../Strings/README.html">
+                    <i class="fa fa-check"></i> <b>6.</b> 字符串处理[Strings]
+                </a>
+                
+                
+            </li>
+        
+            <li  data-level="7" data-path="Primitives/README.html">
+                
+                <a href="../Primitives/README.html">
+                    <i class="fa fa-check"></i> <b>7.</b> 原生类型[Primitives]
+                </a>
+                
+                
+            </li>
+        
+            <li  data-level="8" data-path="Ranges/README.html">
+                
+                <a href="../Ranges/README.html">
+                    <i class="fa fa-check"></i> <b>8.</b> 区间[Ranges]
+                </a>
+                
+                
+            </li>
+        
+            <li  data-level="9" data-path="IO/README.html">
+                
+                <a href="../IO/README.html">
+                    <i class="fa fa-check"></i> <b>9.</b> I/O
+                </a>
+                
+                
+                <ul class="articles">
+                    
+                        <li  data-level="9.1" data-path="IO/ClosingResources.html">
+                            
+                            <a href="../IO/ClosingResources.html">
+                                <i class="fa fa-check"></i> <b>9.1.</b> 关闭资源ClosingResources
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="9.2" data-path="IO/Files.html">
+                            
+                            <a href="../IO/Files.html">
+                                <i class="fa fa-check"></i> <b>9.2.</b> Files类常用方法
+                            </a>
+                            
+                        </li>
+                    
+                </ul>
+                
+            </li>
+        
+            <li  data-level="10" data-path="Hash/README.html">
+                
+                <a href="../Hash/README.html">
+                    <i class="fa fa-check"></i> <b>10.</b> 散列[Hash]
+                </a>
+                
+                
+            </li>
+        
+            <li  data-level="11" data-path="EventBus/README.html">
+                
+                <a href="../EventBus/README.html">
+                    <i class="fa fa-check"></i> <b>11.</b> 事件总线[EventBus]
+                </a>
+                
+                
+            </li>
+        
+            <li  data-level="12" data-path="Math/README.html">
+                
+                <a href="../Math/README.html">
+                    <i class="fa fa-check"></i> <b>12.</b> 数学运算[Math]
+                </a>
+                
+                
+            </li>
+        
+            <li  data-level="13" data-path="Reflection/README.html">
+                
+                <a href="../Reflection/README.html">
+                    <i class="fa fa-check"></i> <b>13.</b> 反射[Reflection]
+                </a>
+                
+                
+            </li>
+        
+    </ul>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="page-wrapper" tabindex="-1">
+                <div class="book-progress">
+    <div class="bar">
+        <div class="inner" style="width: 25%;min-width: 20.833333333333332%;"></div>
+    </div>
+    <div class="chapters">
+    
+        <a href="../index.html" title="Introduction" class="chapter done new-chapter" data-progress="0" style="left: 0%;"></a>
+    
+        <a href="../BasicUtilities/README.html" title="基本工具 Basic Utilities" class="chapter done new-chapter" data-progress="1" style="left: 4.166666666666667%;"></a>
+    
+        <a href="../BasicUtilities/UsingAndAvoidingNull.html" title="Using and avoiding null" class="chapter done " data-progress="1.1" style="left: 8.333333333333334%;"></a>
+    
+        <a href="../BasicUtilities/Preconditions.html" title="Preconditions" class="chapter done " data-progress="1.2" style="left: 12.5%;"></a>
+    
+        <a href="../BasicUtilities/Ordering.html" title="Ordering" class="chapter done " data-progress="1.3" style="left: 16.666666666666668%;"></a>
+    
+        <a href="../BasicUtilities/ObjectCommonUtilities.html" title="Object common methods" class="chapter done " data-progress="1.4" style="left: 20.833333333333332%;"></a>
+    
+        <a href="../BasicUtilities/Throwables.html" title="Throwables" class="chapter done " data-progress="1.5" style="left: 25%;"></a>
+    
+        <a href="../Hash/README.html" title="散列[Hash]" class="chapter  " data-progress="10" style="left: 29.166666666666668%;"></a>
+    
+        <a href="../EventBus/README.html" title="事件总线[EventBus]" class="chapter  " data-progress="11" style="left: 33.333333333333336%;"></a>
+    
+        <a href="../Math/README.html" title="数学运算[Math]" class="chapter  " data-progress="12" style="left: 37.5%;"></a>
+    
+        <a href="../Reflection/README.html" title="反射[Reflection]" class="chapter  " data-progress="13" style="left: 41.666666666666664%;"></a>
+    
+        <a href="../Collections/README.html" title="集合 Collections" class="chapter  new-chapter" data-progress="2" style="left: 45.833333333333336%;"></a>
+    
+        <a href="../Collections/ImmutableCollections.html" title="Immutable collections" class="chapter  " data-progress="2.1" style="left: 50%;"></a>
+    
+        <a href="../Collections/NewCollectionTypes.html" title="New Collection Types" class="chapter  " data-progress="2.2" style="left: 54.166666666666664%;"></a>
+    
+        <a href="../Collections/UtilityClasses.html" title="Utility Classes" class="chapter  " data-progress="2.3" style="left: 58.333333333333336%;"></a>
+    
+        <a href="../Collections/ExtensionUtilities.html" title="Extension Utilities" class="chapter  " data-progress="2.4" style="left: 62.5%;"></a>
+    
+        <a href="../Caches/README.html" title="缓存[Caches]" class="chapter  new-chapter" data-progress="3" style="left: 66.66666666666667%;"></a>
+    
+        <a href="../FunctionalIdioms/README.html" title="函数式风格[Functional idioms]" class="chapter  new-chapter" data-progress="4" style="left: 70.83333333333333%;"></a>
+    
+        <a href="../Concurrency/README.html" title="并发[Concurrency]" class="chapter  new-chapter" data-progress="5" style="left: 75%;"></a>
+    
+        <a href="../Strings/README.html" title="字符串处理[Strings]" class="chapter  new-chapter" data-progress="6" style="left: 79.16666666666667%;"></a>
+    
+        <a href="../Primitives/README.html" title="原生类型[Primitives]" class="chapter  new-chapter" data-progress="7" style="left: 83.33333333333333%;"></a>
+    
+        <a href="../Ranges/README.html" title="区间[Ranges]" class="chapter  new-chapter" data-progress="8" style="left: 87.5%;"></a>
+    
+        <a href="../IO/README.html" title="I/O" class="chapter  new-chapter" data-progress="9" style="left: 91.66666666666667%;"></a>
+    
+        <a href="../IO/ClosingResources.html" title="关闭资源ClosingResources" class="chapter  " data-progress="9.1" style="left: 95.83333333333333%;"></a>
+    
+        <a href="../IO/Files.html" title="Files类常用方法" class="chapter  " data-progress="9.2" style="left: 100%;"></a>
+    
+    </div>
+</div>
+
+                <div class="page-inner">
+                
+                    <section class="normal" id="section-gitbook_20">
+                    
+                        <h1 id="throwables-">Throwables：简化异常和错误的传播与检查</h1>
+<p><a href="http://code.google.com/p/guava-libraries/wiki/ThrowablesExplained" target="_blank">原文链接</a> 译者: 沈义扬</p>
+<h1 id="-">异常传播</h1>
+<p>有时候，你会想把捕获到的异常再次抛出。这种情况通常发生在Error或RuntimeException被捕获的时候，你没想捕获它们，但是声明捕获Throwable和Exception的时候，也包括了了Error或RuntimeException。Guava提供了若干方法，来判断异常类型并且重新传播异常。例如：</p>
+<pre><code class="lang-java"><span class="hljs-keyword">try</span> {
+     someMethodThatCouldThrowAnything();
+   } <span class="hljs-keyword">catch</span> (IKnowWhatToDoWithThisException e) {
+     handle(e);
+   } <span class="hljs-keyword">catch</span> (Throwable t) {
+     Throwables.propagateIfInstanceOf(t, IOException.class);
+     Throwables.propagateIfInstanceOf(t, SQLException.class);
+     <span class="hljs-keyword">throw</span> Throwables.propagate(t);
+   }
+</code></pre>
+<p>所有这些方法都会自己决定是否要抛出异常，但也能直接抛出方法返回的结果——例如，throw Throwables.propagate(t);—— 这样可以向编译器声明这里一定会抛出异常。</p>
+<p>Guava中的异常传播方法简要列举如下：</p>
+<table>
+<thead>
+<tr>
+<th>---</th>
+<th>---</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RuntimeException   propagate(Throwable)</td>
+<td>如果Throwable是Error或RuntimeException，直接抛出；否则把Throwable包装成RuntimeException抛出。返回类型是RuntimeException，所以你可以像上面说的那样写成throw Throwables.propagate(t)，Java编译器会意识到这行代码保证抛出异常。</td>
+</tr>
+<tr>
+<td>void propagateIfInstanceOf( Throwable, Class<X extends   Exception>) throws X</td>
+<td>Throwable类型为X才抛出</td>
+</tr>
+<tr>
+<td>void propagateIfPossible( Throwable)</td>
+<td>Throwable类型为Error或RuntimeException才抛出</td>
+</tr>
+<tr>
+<td>void   propagateIfPossible( Throwable, Class<X extends Throwable>) throws X</td>
+<td>Throwable类型为X, Error或RuntimeException才抛出</td>
+</tr>
+</tbody>
+</table>
+<h1 id="throwables-propagate-">Throwables.propagate的用法</h1>
+<h2 id="-java7-">模仿Java7的多重异常捕获和再抛出</h2>
+<p>通常来说，如果调用者想让异常传播到栈顶，他不需要写任何catch代码块。因为他不打算从异常中恢复，他可能就不应该记录异常，或者有其他的动作。他可能是想做一些清理工作，但通常来说，无论操作是否成功，清理工作都要进行，所以清理工作可能会放在finallly代码块中。但有时候，捕获异常然后再抛出也是有用的：也许调用者想要在异常传播之前统计失败的次数，或者有条件地传播异常。</p>
+<p>当只对一种异常进行捕获和再抛出时，代码可能还是简单明了的。但当多种异常需要处理时，却可能变得一团糟：</p>
+<pre><code class="lang-java"><span class="hljs-annotation">@Override</span> <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span>() {
+  <span class="hljs-keyword">try</span> {
+    delegate.run();
+  } <span class="hljs-keyword">catch</span> (RuntimeException e) {
+    failures.increment();
+    <span class="hljs-keyword">throw</span> e;
+  } <span class="hljs-keyword">catch</span> (Error e) {
+    failures.increment();
+    <span class="hljs-keyword">throw</span> e;
+  }
+}
+</code></pre>
+<p>Java7用多重捕获解决了这个问题：</p>
+<pre><code class="lang-java">  } <span class="hljs-keyword">catch</span> (RuntimeException | Error e) {
+    failures.increment();
+    <span class="hljs-keyword">throw</span> e;
+  }
+</code></pre>
+<p>非Java7用户却受困于这个问题。他们想要写如下代码来统计所有异常，但是编译器不允许他们抛出Throwable（译者注：这种写法把原本是Error或RuntimeException类型的异常修改成了Throwable，因此调用者不得不修改方法签名）：</p>
+<pre><code class="lang-java"> } <span class="hljs-keyword">catch</span> (Throwable t) {
+    failures.increment();
+    <span class="hljs-keyword">throw</span> t;
+ }
+</code></pre>
+<p>解决办法是用throw Throwables.propagate(t)替换throw t。在限定情况下（捕获Error和RuntimeException），Throwables.propagate和原始代码有相同行为。然而，用Throwables.propagate也很容易写出有其他隐藏行为的代码。尤其要注意的是，这个方案只适用于处理RuntimeException 或Error。如果catch块捕获了受检异常，你需要调用propagateIfInstanceOf来保留原始代码的行为，因为Throwables.propagate不能直接传播受检异常。</p>
+<p>总之，Throwables.propagate的这种用法也就马马虎虎，在Java7中就没必要这样做了。在其他Java版本中，它可以减少少量的代码重复，但简单地提取方法进行重构也能做到这一点。此外，使用propagate会意外地包装受检异常。</p>
+<h2 id="-throwable-exception">非必要用法：把抛出的Throwable转为Exception</h2>
+<p>有少数API，尤其是Java反射API和（以此为基础的）Junit，把方法声明成抛出Throwable。和这样的API交互太痛苦了，因为即使是最通用的API通常也只是声明抛出Exception。当确定代码会抛出Throwable，而不是Exception或Error时，调用者可能会用Throwables.propagate转化Throwable。这里有个用Callable执行Junit测试的范例：</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> Void <span class="hljs-title">call</span>() <span class="hljs-keyword">throws</span> Exception {
+  <span class="hljs-keyword">try</span> {
+    FooTest.<span class="hljs-keyword">super</span>.runTest();
+  } <span class="hljs-keyword">catch</span> (Throwable t) {
+    Throwables.propagateIfPossible(t, Exception.class);
+    Throwables.propagate(t);
+  }
+
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
+}
+</code></pre>
+<p>在这儿没必要调用propagate()方法，因为propagateIfPossible传播了Throwable之外的所有异常类型，第二行的propagate就变得完全等价于throw new RuntimeException(t)。（题外话：这个例子也提醒我们，propagateIfPossible可能也会引起混乱，因为它不但会传播参数中给定的异常类型，还抛出Error和RuntimeException）</p>
+<p>这种模式（或类似于throw new RuntimeException(t)的模式）在Google代码库中出现了超过30次。（搜索’propagateIfPossible[^;]* Exception.class[)];’）绝大多数情况下都明确用了”throw new RuntimeException(t)”。我们也曾想过有个”throwWrappingWeirdThrowable”方法处理Throwable到Exception的转化。但考虑到我们用两行代码实现了这个模式，除非我们也丢弃propagateIfPossible方法，不然定义这个throwWrappingWeirdThrowable方法也并没有太大必要。</p>
+<h1 id="throwables-propagate-">Throwables.propagate的有争议用法</h1>
+<h2 id="-">争议一：把受检异常转化为非受检异常</h2>
+<p>原则上，非受检异常代表bug，而受检异常表示不可控的问题。但在实际运用中，即使JDK也有所误用——如Object.clone()、Integer. parseInt(String)、URI(String)——或者至少对某些方法来说，没有让每个人都信服的答案，如URI.create(String)的异常声明。</p>
+<p>因此，调用者有时不得不把受检异常和非受检异常做相互转化：</p>
+<pre><code class="lang-java"><span class="hljs-keyword">try</span> {
+  <span class="hljs-keyword">return</span> Integer.parseInt(userInput);
+} <span class="hljs-keyword">catch</span> (NumberFormatException e) {
+  <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> InvalidInputException(e);
+}
+</code></pre>
+<hr>
+<pre><code class="lang-java"><span class="hljs-keyword">try</span> {
+  <span class="hljs-keyword">return</span> publicInterfaceMethod.invoke();
+} <span class="hljs-keyword">catch</span> (IllegalAccessException e) {
+  <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> AssertionError(e);
+}
+</code></pre>
+<p>有时候，调用者会使用Throwables.propagate转化异常。这样做有没有什么缺点？最主要的恐怕是代码的含义不太明显。throw Throwables.propagate(ioException)做了什么？throw new RuntimeException(ioException)做了什么？这两者做了同样的事情，但后者的意思更简单直接。前者却引起了疑问：”它做了什么？它并不只是把异常包装进RuntimeException吧？如果它真的只做了包装，为什么还非得要写个方法？”。应该承认，这些问题部分是因为”propagate”的语义太模糊了（用来抛出未声明的异常吗？）。也许”wrapIfChecked”更能清楚地表达含义。但即使方法叫做”wrapIfChecked”，用它来包装一个已知类型的受检异常也没什么优点。甚至会有其他缺点：也许比起RuntimeException，还有更合适的类型——如IllegalArgumentException。
+我们有时也会看到propagate被用于传播可能为受检的异常，结果是代码相比以前会稍微简短点，但也稍微有点不清晰：</p>
+<pre><code class="lang-java">} <span class="hljs-keyword">catch</span> (RuntimeException e) {
+  <span class="hljs-keyword">throw</span> e;
+} <span class="hljs-keyword">catch</span> (Exception e) {
+  <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RuntimeException(e);
+}
+</code></pre>
+<hr>
+<pre><code class="lang-java">} <span class="hljs-keyword">catch</span> (Exception e) {
+  <span class="hljs-keyword">throw</span> Throwables.propagate(e);
+}
+</code></pre>
+<p>然而，我们似乎故意忽略了把检查型异常转化为非检查型异常的合理性。在某些场景中，这无疑是正确的做法，但更多时候它被用于避免处理受检异常。这让我们的话题变成了争论受检异常是不是坏主意了，我不想对此多做叙述。但可以这样说，Throwables.propagate不是为了鼓励开发者忽略IOException这样的异常。</p>
+<h2 id="-">争议二：异常穿隧</h2>
+<p>但是，如果你要实现不允许抛出异常的方法呢？有时候你需要把异常包装在非受检异常内。这种做法挺好，但我们再次强调，没必要用propagate方法做这种简单的包装。实际上，手动包装可能更好：如果你手动包装了所有异常（而不仅仅是受检异常），那你就可以在另一端解包所有异常，并处理极少数特殊场景。此外，你可能还想把异常包装成特定的类型，而不是像propagate这样统一包装成RuntimeException。</p>
+<h2 id="-">争议三：重新抛出其他线程产生的异常</h2>
+<pre><code class="lang-java"><span class="hljs-keyword">try</span> {
+  <span class="hljs-keyword">return</span> future.get();
+} <span class="hljs-keyword">catch</span> (ExecutionException e) {
+  <span class="hljs-keyword">throw</span> Throwables.propagate(e.getCause());
+}
+</code></pre>
+<p>对这样的代码要考虑很多方面：</p>
+<ul>
+<li>ExecutionException的cause可能是受检异常，见上文”争议一：把检查型异常转化为非检查型异常”。但如果我们确定future对应的任务不会抛出受检异常呢？（可能future表示runnable任务的结果——译者注：如ExecutorService中的submit(Runnable task, T
+result)方法）如上所述，你可以捕获异常并抛出AssertionError。尤其对于Future，请考虑 Futures.get方法。（TODO：对future.get()抛出的另一个异常InterruptedException作一些说明）</li>
+<li>ExecutionException的cause可能直接是Throwable类型，而不是Exception或Error。（实际上这不大可能，但你想直接重新抛出cause的话，编译器会强迫你考虑这种可能性）见上文”用法二：把抛出Throwable改为抛出Exception”。</li>
+<li>ExecutionException的cause可能是非受检异常。如果是这样的话，cause会直接被Throwables.propagate抛出。不幸的是，cause的堆栈信息反映的是异常最初产生的线程，而不是传播异常的线程。通常来说，最好在异常链中同时包含这两个线程的堆栈信息，就像ExecutionException所做的那样。（这个问题并不单单和propagate方法相关；所有在其他线程中重新抛出异常的代码都需要考虑这点）</li>
+</ul>
+<h2 id="-">异常原因链</h2>
+<p>Guava提供了如下三个有用的方法，让研究异常的原因链变得稍微简便了，这三个方法的签名是不言自明的：</p>
+<p>Throwable   getRootCause(Throwable)</p>
+<p>List<Throwable>   getCausalChain(Throwable)</p>
+<p>String   getStackTraceAsString(Throwable)</p>
+<p>（全文完） </p>
+
+                    
+                    </section>
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../BasicUtilities/ObjectCommonUtilities.html" class="navigation navigation-prev"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../Collections/README.html" class="navigation navigation-next"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.1.3/ace.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.1.3/mode-javascript.js"></script>
+        <script src="../gitbook/jsrepl/jsrepl.js" id="jsrepl-script"></script>
+        <script src="../gitbook/app.js"></script>
+        
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-mixpanel/plugin.js"></script>
+    
+
+    
+    <script src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-mathjax/plugin.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {};
+    gitbook.start(config);
+});
+</script>
+
+    </body>
+</html>

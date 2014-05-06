@@ -1,0 +1,595 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+    <head prefix="og: http://ogp.me/ns# book: http://ogp.me/ns/book#">
+        
+        <meta charset="UTF-8">
+        <title>缓存[Caches] | Learn Guava</title>
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="robots" content="index, follow">
+        <meta name="author" content="xionglie">
+        <meta name="description" content="笔记的大部分翻译内容来源于以下">
+        <meta name="keywords" content="gitbook,github" >
+        <meta name="generator" content="www.gitbook.io">
+
+        
+        <link rel="next" href="../FunctionalIdioms/README.html" />
+        
+        
+        <link rel="prev" href="../Collections/ExtensionUtilities.html" />
+        
+
+        <meta property="og:title" content="缓存[Caches] | Learn Guava">
+        <meta property="og:site_name" content="Learn Guava">
+        <meta property="og:type" content="book">
+        <meta property="og:locale" content="en_US">
+
+        <meta property="book:author" content="https://github.com/xionglie">
+        <meta property="book:tag" content="GitBook">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    </head>
+    <body>
+        
+
+        <link rel="stylesheet" href="../gitbook/style.css">
+        
+
+
+        
+    <div class="book" data-github="xionglie/note-learning-guava" data-level="3" data-basepath=".." data-revision="1399366847872">
+    <div class="book-header">
+    <!-- Actions Left -->
+    
+    <a href="https://github.com/xionglie/note-learning-guava" target="_blank" class="btn pull-left"><i class="fa fa-github-alt"></i></a>
+    
+    <a href="#" class="btn pull-left toggle-summary"><i class="fa fa-align-justify"></i></a>
+    <a href="#" class="btn pull-left toggle-search"><i class="fa fa-search"></i></a>
+    <span id="font-settings-wrapper">
+        <a href="#" class="btn pull-left toggle-font-settings"><i class="fa fa-font"></i>
+        </a>
+        <div class="dropdown-menu font-settings">
+	<div class="dropdown-caret">
+  <span class="caret-outer"></span>
+  <span class="caret-inner"></span>
+</div>
+
+	<div class="btn-group btn-block">
+		<button id="reduce-font-size" class="btn btn-default">A</button>
+		<button id="enlarge-font-size" class="btn btn-default">A</button>
+	</div>
+
+	<ul class="list-group font-family-list">
+		<li class="list-group-item" data-font="0">Serif</li>
+		<li class="list-group-item" data-font="1">Sans</li>
+	</ul>
+
+	<div class="btn-group btn-group-xs btn-block color-theme-list">
+	  <button type="button" class="btn btn-default" id="color-theme-preview-0" data-theme="0">White</button>
+	  <button type="button" class="btn btn-default" id="color-theme-preview-1" data-theme="1">Sepia</button>
+	  <button type="button" class="btn btn-default" id="color-theme-preview-2" data-theme="2">Night</button>
+	</div>
+</div>
+
+    </span>
+
+    <!-- Actions Right -->
+    <a href="#" target="_blank" class="btn pull-right" data-sharing="google-plus"><i class="fa fa-google-plus"></i></a>
+    <a href="#" target="_blank" class="btn pull-right" data-sharing="facebook"><i class="fa fa-facebook"></i></a>
+    <a href="#" target="_blank" class="btn pull-right" data-sharing="twitter"><i class="fa fa-twitter"></i></a>
+
+    
+    <a href="https://github.com/xionglie/note-learning-guava/stargazers" target="_blank" class="btn pull-right count-star"><i class="fa fa-star-o"></i> Star (<span>-</span>)</a>
+    <a href="https://github.com/xionglie/note-learning-guava/watchers" target="_blank" class="btn pull-right count-watch"><i class="fa fa-eye"></i> Watch (<span>-</span>)</a>
+    
+
+    <!-- Title -->
+    <h1><a href="../" >Learn Guava</a></h1>
+</div>
+
+    <div class="book-summary">
+    <div class="book-search">
+        <input type="text" placeholder="Search" class="form-control" />
+    </div>
+    <ul class="summary">
+        
+        <li>
+            <a href="https://github.com/xionglie" target="blank">About the author</a>
+        </li>
+        <li>
+            <a href="https://github.com/xionglie/note-learning-guava/issues" target="blank">Questions and Issues</a>
+        </li>
+        <li>
+            <a href="https://github.com/xionglie/note-learning-guava/edit/master/Caches/README.md" target="blank">Edit and Contribute</a>
+        </li>
+        <li class="divider"></li>
+        
+        <li data-level="0" data-path="index.html">
+            <a href="../"><i class="fa fa-check"></i> Introduction</a>
+        </li>
+        
+            <li  data-level="1" data-path="BasicUtilities/README.html">
+                
+                <a href="../BasicUtilities/README.html">
+                    <i class="fa fa-check"></i> <b>1.</b> 基本工具 Basic Utilities
+                </a>
+                
+                
+                <ul class="articles">
+                    
+                        <li  data-level="1.1" data-path="BasicUtilities/UsingAndAvoidingNull.html">
+                            
+                            <a href="../BasicUtilities/UsingAndAvoidingNull.html">
+                                <i class="fa fa-check"></i> <b>1.1.</b> Using and avoiding null
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="1.2" data-path="BasicUtilities/Preconditions.html">
+                            
+                            <a href="../BasicUtilities/Preconditions.html">
+                                <i class="fa fa-check"></i> <b>1.2.</b> Preconditions
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="1.3" data-path="BasicUtilities/Ordering.html">
+                            
+                            <a href="../BasicUtilities/Ordering.html">
+                                <i class="fa fa-check"></i> <b>1.3.</b> Ordering
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="1.4" data-path="BasicUtilities/ObjectCommonUtilities.html">
+                            
+                            <a href="../BasicUtilities/ObjectCommonUtilities.html">
+                                <i class="fa fa-check"></i> <b>1.4.</b> Object common methods
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="1.5" data-path="BasicUtilities/Throwables.html">
+                            
+                            <a href="../BasicUtilities/Throwables.html">
+                                <i class="fa fa-check"></i> <b>1.5.</b> Throwables
+                            </a>
+                            
+                        </li>
+                    
+                </ul>
+                
+            </li>
+        
+            <li  data-level="2" data-path="Collections/README.html">
+                
+                <a href="../Collections/README.html">
+                    <i class="fa fa-check"></i> <b>2.</b> 集合 Collections
+                </a>
+                
+                
+                <ul class="articles">
+                    
+                        <li  data-level="2.1" data-path="Collections/ImmutableCollections.html">
+                            
+                            <a href="../Collections/ImmutableCollections.html">
+                                <i class="fa fa-check"></i> <b>2.1.</b> Immutable collections
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="2.2" data-path="Collections/NewCollectionTypes.html">
+                            
+                            <a href="../Collections/NewCollectionTypes.html">
+                                <i class="fa fa-check"></i> <b>2.2.</b> New Collection Types
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="2.3" data-path="Collections/UtilityClasses.html">
+                            
+                            <a href="../Collections/UtilityClasses.html">
+                                <i class="fa fa-check"></i> <b>2.3.</b> Utility Classes
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="2.4" data-path="Collections/ExtensionUtilities.html">
+                            
+                            <a href="../Collections/ExtensionUtilities.html">
+                                <i class="fa fa-check"></i> <b>2.4.</b> Extension Utilities
+                            </a>
+                            
+                        </li>
+                    
+                </ul>
+                
+            </li>
+        
+            <li  data-level="3" data-path="Caches/README.html">
+                
+                <a href="../Caches/README.html">
+                    <i class="fa fa-check"></i> <b>3.</b> 缓存[Caches]
+                </a>
+                
+                
+            </li>
+        
+            <li  data-level="4" data-path="FunctionalIdioms/README.html">
+                
+                <a href="../FunctionalIdioms/README.html">
+                    <i class="fa fa-check"></i> <b>4.</b> 函数式风格[Functional idioms]
+                </a>
+                
+                
+            </li>
+        
+            <li  data-level="5" data-path="Concurrency/README.html">
+                
+                <a href="../Concurrency/README.html">
+                    <i class="fa fa-check"></i> <b>5.</b> 并发[Concurrency]
+                </a>
+                
+                
+            </li>
+        
+            <li  data-level="6" data-path="Strings/README.html">
+                
+                <a href="../Strings/README.html">
+                    <i class="fa fa-check"></i> <b>6.</b> 字符串处理[Strings]
+                </a>
+                
+                
+            </li>
+        
+            <li  data-level="7" data-path="Primitives/README.html">
+                
+                <a href="../Primitives/README.html">
+                    <i class="fa fa-check"></i> <b>7.</b> 原生类型[Primitives]
+                </a>
+                
+                
+            </li>
+        
+            <li  data-level="8" data-path="Ranges/README.html">
+                
+                <a href="../Ranges/README.html">
+                    <i class="fa fa-check"></i> <b>8.</b> 区间[Ranges]
+                </a>
+                
+                
+            </li>
+        
+            <li  data-level="9" data-path="IO/README.html">
+                
+                <a href="../IO/README.html">
+                    <i class="fa fa-check"></i> <b>9.</b> I/O
+                </a>
+                
+                
+                <ul class="articles">
+                    
+                        <li  data-level="9.1" data-path="IO/ClosingResources.html">
+                            
+                            <a href="../IO/ClosingResources.html">
+                                <i class="fa fa-check"></i> <b>9.1.</b> 关闭资源ClosingResources
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="9.2" data-path="IO/Files.html">
+                            
+                            <a href="../IO/Files.html">
+                                <i class="fa fa-check"></i> <b>9.2.</b> Files类常用方法
+                            </a>
+                            
+                        </li>
+                    
+                </ul>
+                
+            </li>
+        
+            <li  data-level="10" data-path="Hash/README.html">
+                
+                <a href="../Hash/README.html">
+                    <i class="fa fa-check"></i> <b>10.</b> 散列[Hash]
+                </a>
+                
+                
+            </li>
+        
+            <li  data-level="11" data-path="EventBus/README.html">
+                
+                <a href="../EventBus/README.html">
+                    <i class="fa fa-check"></i> <b>11.</b> 事件总线[EventBus]
+                </a>
+                
+                
+            </li>
+        
+            <li  data-level="12" data-path="Math/README.html">
+                
+                <a href="../Math/README.html">
+                    <i class="fa fa-check"></i> <b>12.</b> 数学运算[Math]
+                </a>
+                
+                
+            </li>
+        
+            <li  data-level="13" data-path="Reflection/README.html">
+                
+                <a href="../Reflection/README.html">
+                    <i class="fa fa-check"></i> <b>13.</b> 反射[Reflection]
+                </a>
+                
+                
+            </li>
+        
+    </ul>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="page-wrapper" tabindex="-1">
+                <div class="book-progress">
+    <div class="bar">
+        <div class="inner" style="width: 66.66666666666667%;min-width: 62.5%;"></div>
+    </div>
+    <div class="chapters">
+    
+        <a href="../index.html" title="Introduction" class="chapter done new-chapter" data-progress="0" style="left: 0%;"></a>
+    
+        <a href="../BasicUtilities/README.html" title="基本工具 Basic Utilities" class="chapter done new-chapter" data-progress="1" style="left: 4.166666666666667%;"></a>
+    
+        <a href="../BasicUtilities/UsingAndAvoidingNull.html" title="Using and avoiding null" class="chapter done " data-progress="1.1" style="left: 8.333333333333334%;"></a>
+    
+        <a href="../BasicUtilities/Preconditions.html" title="Preconditions" class="chapter done " data-progress="1.2" style="left: 12.5%;"></a>
+    
+        <a href="../BasicUtilities/Ordering.html" title="Ordering" class="chapter done " data-progress="1.3" style="left: 16.666666666666668%;"></a>
+    
+        <a href="../BasicUtilities/ObjectCommonUtilities.html" title="Object common methods" class="chapter done " data-progress="1.4" style="left: 20.833333333333332%;"></a>
+    
+        <a href="../BasicUtilities/Throwables.html" title="Throwables" class="chapter done " data-progress="1.5" style="left: 25%;"></a>
+    
+        <a href="../Hash/README.html" title="散列[Hash]" class="chapter done " data-progress="10" style="left: 29.166666666666668%;"></a>
+    
+        <a href="../EventBus/README.html" title="事件总线[EventBus]" class="chapter done " data-progress="11" style="left: 33.333333333333336%;"></a>
+    
+        <a href="../Math/README.html" title="数学运算[Math]" class="chapter done " data-progress="12" style="left: 37.5%;"></a>
+    
+        <a href="../Reflection/README.html" title="反射[Reflection]" class="chapter done " data-progress="13" style="left: 41.666666666666664%;"></a>
+    
+        <a href="../Collections/README.html" title="集合 Collections" class="chapter done new-chapter" data-progress="2" style="left: 45.833333333333336%;"></a>
+    
+        <a href="../Collections/ImmutableCollections.html" title="Immutable collections" class="chapter done " data-progress="2.1" style="left: 50%;"></a>
+    
+        <a href="../Collections/NewCollectionTypes.html" title="New Collection Types" class="chapter done " data-progress="2.2" style="left: 54.166666666666664%;"></a>
+    
+        <a href="../Collections/UtilityClasses.html" title="Utility Classes" class="chapter done " data-progress="2.3" style="left: 58.333333333333336%;"></a>
+    
+        <a href="../Collections/ExtensionUtilities.html" title="Extension Utilities" class="chapter done " data-progress="2.4" style="left: 62.5%;"></a>
+    
+        <a href="../Caches/README.html" title="缓存[Caches]" class="chapter done new-chapter" data-progress="3" style="left: 66.66666666666667%;"></a>
+    
+        <a href="../FunctionalIdioms/README.html" title="函数式风格[Functional idioms]" class="chapter  new-chapter" data-progress="4" style="left: 70.83333333333333%;"></a>
+    
+        <a href="../Concurrency/README.html" title="并发[Concurrency]" class="chapter  new-chapter" data-progress="5" style="left: 75%;"></a>
+    
+        <a href="../Strings/README.html" title="字符串处理[Strings]" class="chapter  new-chapter" data-progress="6" style="left: 79.16666666666667%;"></a>
+    
+        <a href="../Primitives/README.html" title="原生类型[Primitives]" class="chapter  new-chapter" data-progress="7" style="left: 83.33333333333333%;"></a>
+    
+        <a href="../Ranges/README.html" title="区间[Ranges]" class="chapter  new-chapter" data-progress="8" style="left: 87.5%;"></a>
+    
+        <a href="../IO/README.html" title="I/O" class="chapter  new-chapter" data-progress="9" style="left: 91.66666666666667%;"></a>
+    
+        <a href="../IO/ClosingResources.html" title="关闭资源ClosingResources" class="chapter  " data-progress="9.1" style="left: 95.83333333333333%;"></a>
+    
+        <a href="../IO/Files.html" title="Files类常用方法" class="chapter  " data-progress="9.2" style="left: 100%;"></a>
+    
+    </div>
+</div>
+
+                <div class="page-inner">
+                
+                    <section class="normal" id="section-gitbook_4">
+                    
+                        <h1 id="-caches-">缓存[Caches]</h1>
+<pre><code class="lang-java">LoadingCache&lt;Key, Graph&gt; graphs = CacheBuilder.newBuilder()
+       .maximumSize(<span class="hljs-number">1000</span>)
+       .expireAfterWrite(<span class="hljs-number">10</span>, TimeUnit.MINUTES)
+       .removalListener(MY_LISTENER)
+       .build(
+           <span class="hljs-keyword">new</span> CacheLoader&lt;Key, Graph&gt;() {
+             <span class="hljs-keyword">public</span> Graph <span class="hljs-title">load</span>(Key key) <span class="hljs-keyword">throws</span> AnyException {
+               <span class="hljs-keyword">return</span> createExpensiveGraph(key);
+             }
+           });
+</code></pre>
+<h1 id="-">适用性</h1>
+<p>缓存在很多场景下都是相当有用的。例如，计算或检索一个值的代价很高，并且对同样的输入需要不止一次获取值的时候，就应当考虑使用缓存。</p>
+<p>Guava Cache与ConcurrentMap很相似，但也不完全一样。最基本的区别是ConcurrentMap会一直保存所有添加的元素，直到显式地移除。相对地，Guava Cache为了限制内存占用，通常都设定为自动回收元素。在某些场景下，尽管LoadingCache 不回收元素，它也是很有用的，因为它会自动加载缓存。</p>
+<p>通常来说，Guava Cache适用于：</p>
+<ul>
+<li>你愿意消耗一些内存空间来提升速度。</li>
+<li>你预料到某些键会被查询一次以上。</li>
+<li>缓存中存放的数据总量不会超出内存容量。（Guava Cache是单个应用运行时的本地缓存。它不把数据存放到文件或外部服务器。如果这不符合你的需求，请尝试Memcached这类工具）</li>
+</ul>
+<p>如果你的场景符合上述的每一条，Guava Cache就适合你。</p>
+<p>如同范例代码展示的一样，Cache实例通过CacheBuilder生成器模式获取，但是自定义你的缓存才是最有趣的部分。</p>
+<p>注：如果你不需要Cache中的特性，使用ConcurrentHashMap有更好的内存效率——但Cache的大多数特性都很难基于旧有的ConcurrentMap复制，甚至根本不可能做到。</p>
+<h1 id="-">加载</h1>
+<p>在使用缓存前，首先问自己一个问题：有没有合理的默认方法来加载或计算与键关联的值？如果有的话，你应当使用CacheLoader。如果没有，或者你想要覆盖默认的加载运算，同时保留&quot;获取缓存-如果没有-则计算&quot;[get-if-absent-compute]的原子语义，你应该在调用get时传入一个Callable实例。缓存元素也可以通过Cache.put方法直接插入，但自动加载是首选的，因为它可以更容易地推断所有缓存内容的一致性。</p>
+<h2 id="-cacheloader-http-docs-guava-libraries-googlecode-com-git-javadoc-com-google-common-cache-cacheloader-html-"><a href="http://docs.guava-libraries.googlecode.com/git/javadoc/com/google/common/cache/CacheLoader.html" target="_blank">CacheLoader</a></h2>
+<p>LoadingCache是附带CacheLoader构建而成的缓存实现。创建自己的CacheLoader通常只需要简单地实现V load(K key) throws Exception方法。例如，你可以用下面的代码构建LoadingCache：</p>
+<pre><code class="lang-java">LoadingCache&lt;Key, Graph&gt; graphs = CacheBuilder.newBuilder()
+       .maximumSize(<span class="hljs-number">1000</span>)
+       .build(
+           <span class="hljs-keyword">new</span> CacheLoader&lt;Key, Graph&gt;() {
+             <span class="hljs-keyword">public</span> Graph <span class="hljs-title">load</span>(Key key) <span class="hljs-keyword">throws</span> AnyException {
+               <span class="hljs-keyword">return</span> createExpensiveGraph(key);
+             }
+           });
+
+...
+<span class="hljs-keyword">try</span> {
+  <span class="hljs-keyword">return</span> graphs.get(key);
+} <span class="hljs-keyword">catch</span> (ExecutionException e) {
+  <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> OtherException(e.getCause());
+}
+</code></pre>
+<p>从LoadingCache查询的正规方式是使用get(K)方法。这个方法要么返回已经缓存的值，要么使用CacheLoader向缓存原子地加载新值。由于CacheLoader可能抛出异常，LoadingCache.get(K)也声明为抛出ExecutionException异常。如果你定义的CacheLoader没有声明任何检查型异常，则可以通过getUnchecked(K)查找缓存；但必须注意，一旦CacheLoader声明了检查型异常，就不可以调用getUnchecked(K)。</p>
+<pre><code class="lang-java">LoadingCache&lt;Key, Graph&gt; graphs = CacheBuilder.newBuilder()
+       .expireAfterAccess(<span class="hljs-number">10</span>, TimeUnit.MINUTES)
+       .build(
+           <span class="hljs-keyword">new</span> CacheLoader&lt;Key, Graph&gt;() {
+             <span class="hljs-keyword">public</span> Graph <span class="hljs-title">load</span>(Key key) { <span class="hljs-comment">// no checked exception</span>
+               <span class="hljs-keyword">return</span> createExpensiveGraph(key);
+             }
+           });
+
+...
+<span class="hljs-keyword">return</span> graphs.getUnchecked(key);
+</code></pre>
+<p>getAll(Iterable&lt;? extends K&gt;)方法用来执行批量查询。默认情况下，对每个不在缓存中的键，getAll方法会单独调用CacheLoader.load来加载缓存项。如果批量的加载比多个单独加载更高效，你可以重载CacheLoader.loadAll来利用这一点。getAll(Iterable)的性能也会相应提升。</p>
+<p>注：CacheLoader.loadAll的实现可以为没有明确请求的键加载缓存值。例如，为某组中的任意键计算值时，能够获取该组中的所有键值，loadAll方法就可以实现为在同一时间获取该组的其他键值。校注：getAll(Iterable&lt;? extends K&gt;)方法会调用loadAll，但会筛选结果，只会返回请求的键值对。</p>
+<h2 id="from-a-callable-http-docs-oracle-com-javase-7-docs-api-java-util-concurrent-callable-html-">From a <a href="http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/Callable.html" target="_blank">Callable</a></h2>
+<p>所有类型的Guava Cache，不管有没有自动加载功能，都支持get(K, Callable<V>)方法。这个方法返回缓存中相应的值，或者用给定的Callable运算并把结果加入到缓存中。在整个加载方法完成前，缓存项相关的可观察状态都不会更改。这个方法简便地实现了模式&quot;如果有缓存则返回；否则运算、缓存、然后返回&quot;。</p>
+<pre><code class="lang-java">Cache&lt;Key, Value&gt; cache = CacheBuilder.newBuilder()
+    .maximumSize(<span class="hljs-number">1000</span>)
+    .build(); <span class="hljs-comment">// look Ma, no CacheLoader</span>
+...
+<span class="hljs-keyword">try</span> {
+  <span class="hljs-comment">// If the key wasn't in the "easy to compute" group, we need to</span>
+  <span class="hljs-comment">// do things the hard way.</span>
+  cache.get(key, <span class="hljs-keyword">new</span> Callable&lt;Value&gt;() {
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">public</span> Value <span class="hljs-title">call</span>() <span class="hljs-keyword">throws</span> AnyException {
+      <span class="hljs-keyword">return</span> doThingsTheHardWay(key);
+    }
+  });
+} <span class="hljs-keyword">catch</span> (ExecutionException e) {
+  <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> OtherException(e.getCause());
+}
+</code></pre>
+<h2 id="-">显式插入</h2>
+<p>使用cache.put(key, value) 方法可以直接向缓存中插入值，这会直接覆盖掉给定键之前映射的值。使用Cache.asMap()视图提供的任何方法也能修改缓存。但请注意，asMap视图的任何方法都不能保证缓存项被原子地加载到缓存中。进一步说，asMap视图的原子运算在Guava Cache的原子加载范畴之外，所以相比于Cache.asMap().putIfAbsent(K,
+V)，Cache.get(K, Callable<V>) 应该总是优先使用。</p>
+<h1 id="-">缓存回收</h1>
+<p>一个残酷的现实是，我们几乎一定没有足够的内存缓存所有数据。你你必须决定：什么时候某个缓存项就不值得保留了？Guava Cache提供了三种基本的缓存回收方式：基于容量回收、定时回收和基于引用回收。</p>
+<h2 id="-size-based-eviction-">基于容量的回收（size-based eviction）</h2>
+<p>如果要规定缓存项的数目不超过固定值，只需使用CacheBuilder.maximumSize(long)。缓存将尝试回收最近没有使用或总体上很少使用的缓存项。——警告：在缓存项的数目达到限定值之前，缓存就可能进行回收操作——通常来说，这种情况发生在缓存项的数目逼近限定值时。</p>
+<p>另外，不同的缓存项有不同的“权重”（weights）——例如，如果你的缓存值，占据完全不同的内存空间，你可以使用CacheBuilder.weigher(Weigher)指定一个权重函数，并且用CacheBuilder.maximumWeight(long)指定最大总重。在权重限定场景中，除了要注意回收也是在重量逼近限定值时就进行了，还要知道重量是在缓存创建时计算的，因此要考虑重量计算的复杂度。</p>
+<pre><code class="lang-java">LoadingCache&lt;Key, Graph&gt; graphs = CacheBuilder.newBuilder()
+       .maximumWeight(<span class="hljs-number">100000</span>)
+       .weigher(<span class="hljs-keyword">new</span> Weigher&lt;Key, Graph&gt;() {
+          <span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">weigh</span>(Key k, Graph g) {
+            <span class="hljs-keyword">return</span> g.vertices().size();
+          }
+        })
+       .build(
+           <span class="hljs-keyword">new</span> CacheLoader&lt;Key, Graph&gt;() {
+             <span class="hljs-keyword">public</span> Graph <span class="hljs-title">load</span>(Key key) { <span class="hljs-comment">// no checked exception</span>
+               <span class="hljs-keyword">return</span> createExpensiveGraph(key);
+             }
+           });
+</code></pre>
+<h2 id="-timed-eviction-">定时回收（Timed Eviction）</h2>
+<p>CacheBuilder提供两种定时回收的方法：</p>
+<ul>
+<li>expireAfterAccess(long, TimeUnit)：缓存项在给定时间内没有被读/写访问，则回收。请注意这种缓存的回收顺序和基于大小回收一样。</li>
+<li>expireAfterWrite(long, TimeUnit)：缓存项在给定时间内没有被写访问（创建或覆盖），则回收。如果认为缓存数据总是在固定时候后变得陈旧不可用，这种回收方式是可取的。
+如下文所讨论，定时回收周期性地在写操作中执行，偶尔在读操作中执行。</li>
+</ul>
+<h3 id="-">测试定时回收</h3>
+<p>对定时回收进行测试时，不一定非得花费两秒钟去测试两秒的过期。你可以使用Ticker接口和CacheBuilder.ticker(Ticker)方法在缓存中自定义一个时间源，而不是非得用系统时钟。</p>
+<h2 id="-reference-based-eviction-">基于引用的回收（Reference-based Eviction）</h2>
+<p>通过使用弱引用的键、或弱引用的值、或软引用的值，Guava Cache可以把缓存设置为允许垃圾回收：</p>
+<ul>
+<li>CacheBuilder.weakKeys()：使用弱引用存储键。当键没有其它（强或软）引用时，缓存项可以被垃圾回收。因为垃圾回收仅依赖恒等式（==），使用弱引用键的缓存用==而不是equals比较键。</li>
+<li>CacheBuilder.weakValues()：使用弱引用存储值。当值没有其它（强或软）引用时，缓存项可以被垃圾回收。因为垃圾回收仅依赖恒等式（==），使用弱引用值的缓存用==而不是equals比较值。</li>
+<li>CacheBuilder.softValues()：使用软引用存储值。软引用只有在响应内存需要时，才按照全局最近最少使用的顺序回收。考虑到使用软引用的性能影响，我们通常建议使用更有性能预测性的缓存大小限定（见上文，基于容量回收）。使用软引用值的缓存同样用==而不是equals比较值。</li>
+</ul>
+<h1 id="-explicit-removals">显式清除Explicit Removals</h1>
+<p>任何时候，你都可以显式地清除缓存项，而不是等到它被回收：</p>
+<ul>
+<li>个别清除：Cache.invalidate(key)</li>
+<li>批量清除：Cache.invalidateAll(keys)</li>
+<li>清除所有缓存项：Cache.invalidateAll()</li>
+</ul>
+<h1 id="-removal-listeners">移除监听器Removal Listeners</h1>
+<p>通过CacheBuilder.removalListener(RemovalListener)，你可以声明一个监听器，以便缓存项被移除时做一些额外操作。缓存项被移除时，RemovalListener会获取移除通知[RemovalNotification]，其中包含移除原因[RemovalCause]、键和值。</p>
+<p>请注意，RemovalListener抛出的任何异常都会在记录到日志后被丢弃[swallowed]。</p>
+<pre><code class="lang-java">CacheLoader&lt;Key, DatabaseConnection&gt; loader = <span class="hljs-keyword">new</span> CacheLoader&lt;Key, DatabaseConnection&gt; () {
+  <span class="hljs-keyword">public</span> DatabaseConnection <span class="hljs-title">load</span>(Key key) <span class="hljs-keyword">throws</span> Exception {
+    <span class="hljs-keyword">return</span> openConnection(key);
+  }
+};
+RemovalListener&lt;Key, DatabaseConnection&gt; removalListener = <span class="hljs-keyword">new</span> RemovalListener&lt;Key, DatabaseConnection&gt;() {
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onRemoval</span>(RemovalNotification&lt;Key, DatabaseConnection&gt; removal) {
+    DatabaseConnection conn = removal.getValue();
+    conn.close(); <span class="hljs-comment">// tear down properly</span>
+  }
+};
+
+<span class="hljs-keyword">return</span> CacheBuilder.newBuilder()
+  .expireAfterWrite(<span class="hljs-number">2</span>, TimeUnit.MINUTES)
+  .removalListener(removalListener)
+  .build(loader);
+</code></pre>
+<p>警告：默认情况下，监听器方法是在移除缓存时同步调用的。因为缓存的维护和请求响应通常是同时进行的，代价高昂的监听器方法在同步模式下会拖慢正常的缓存请求。在这种情况下，你可以使用RemovalListeners.asynchronous(RemovalListener, Executor)把监听器装饰为异步操作。</p>
+<h1 id="-when-does-cleanup-happen-">清理什么时候发生？When Does Cleanup Happen?</h1>
+<p>使用CacheBuilder构建的缓存不会&quot;自动&quot;执行清理和回收工作，也不会在某个缓存项过期后马上清理，也没有诸如此类的清理机制。相反，它会在写操作时顺带做少量的维护工作，或者偶尔在读操作时做——如果写操作实在太少的话。</p>
+<p>这样做的原因在于：如果要自动地持续清理缓存，就必须有一个线程，这个线程会和用户操作竞争共享锁。此外，某些环境下线程创建可能受限制，这样CacheBuilder就不可用了。</p>
+<p>相反，我们把选择权交到你手里。如果你的缓存是高吞吐的，那就无需担心缓存的维护和清理等工作。如果你的 缓存只会偶尔有写操作，而你又不想清理工作阻碍了读操作，那么可以创建自己的维护线程，以固定的时间间隔调用Cache.cleanUp()。ScheduledExecutorService可以帮助你很好地实现这样的定时调度。</p>
+
+                    
+                    </section>
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../Collections/ExtensionUtilities.html" class="navigation navigation-prev"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../FunctionalIdioms/README.html" class="navigation navigation-next"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.1.3/ace.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.1.3/mode-javascript.js"></script>
+        <script src="../gitbook/jsrepl/jsrepl.js" id="jsrepl-script"></script>
+        <script src="../gitbook/app.js"></script>
+        
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-mixpanel/plugin.js"></script>
+    
+
+    
+    <script src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-mathjax/plugin.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {};
+    gitbook.start(config);
+});
+</script>
+
+    </body>
+</html>
