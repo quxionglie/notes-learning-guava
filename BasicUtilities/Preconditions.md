@@ -1,0 +1,37 @@
+Preconditions 前置条件
+======
+前置条件：让方法调用的前置条件判断更简单。
+
+Guava在Preconditions类中提供了若干前置条件判断的实用方法，我们强烈建议在Eclipse中静态导入这些方法。每个方法都有三个变种：
+
+没有额外参数：抛出的异常中没有错误消息；
+有一个Object对象作为额外参数：抛出的异常使用Object.toString() 作为错误消息；
+有一个String对象作为额外参数，并且有一组任意数量的附加Object对象：这个变种处理异常消息的方式有点类似printf，但考虑GWT的兼容性和效率，只支持%s指示符。例如：
+
+```java
+checkArgument(i >= 0, "Argument was %s but expected nonnegative", i);
+checkArgument(i < j, "Expected i < j, but %s > %s", i, j);
+```
+
+方法声明（不包括额外参数）	|描述	|检查失败时抛出的异常
+--- | --- | ----
+checkArgument(boolean)					| 检查boolean是否为true，用来检查传递给方法的参数。						| IllegalArgumentException
+checkNotNull(T)							| 检查value是否为null，该方法直接返回value，因此可以内嵌使用checkNotNull。	| NullPointerException
+checkState(boolean)						| 用来检查对象的某些状态。												| IllegalStateException
+checkElementIndex(int index, int size)	| 检查index作为索引值对某个列表、字符串或数组是否有效。index>=0 && index<size |	IndexOutOfBoundsException
+checkPositionIndex(int index, int size)	| 检查index作为位置值对某个列表、字符串或数组是否有效。index>=0 && index<=size |	IndexOutOfBoundsException
+checkPositionIndexes(int start, int end, int size)	|检查[start, end]表示的位置范围对某个列表、字符串或数组是否有效 |IndexOutOfBoundsException
+
+译者注：
+* 索引值常用来查找列表、字符串或数组中的元素，如List.get(int), String.charAt(int)
+* 位置值和位置范围常用来截取列表、字符串或数组，如List.subList(int，int), String.substring(int)
+
+相比Apache Commons提供的类似方法，我们把Guava中的Preconditions作为首选。Piotr Jagielski在他的博客中简要地列举了一些理由：
+
+在静态导入后，Guava方法非常清楚明晰。checkNotNull清楚地描述做了什么，会抛出什么异常；
+
+checkNotNull直接返回检查的参数，让你可以在构造函数中保持字段的单行赋值风格：this.field = checkNotNull(field)
+
+简单的、参数可变的printf风格异常信息。鉴于这个优点，在JDK7已经引入Objects.requireNonNull的情况下，我们仍然建议你使用checkNotNull。
+
+在编码时，如果某个值有多重的前置条件，我们建议你把它们放到不同的行，这样有助于在调试时定位。此外，把每个前置条件放到不同的行，也可以帮助你编写清晰和有用的错误消息。
