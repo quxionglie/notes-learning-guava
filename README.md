@@ -1,6 +1,9 @@
-Learn Guava
+Guava学习笔记
 ======
-笔记的大部分翻译内容来源于以下
+
+[Guava学习笔记](http://xionglie.github.io/note-learning-guava)
+
+笔记的大部分中文翻译内容来源于以下
 
 [Google Guava官方教程（中文版）](http://ifeve.com/google-guava/)
 
