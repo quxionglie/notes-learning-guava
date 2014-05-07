@@ -3,7 +3,7 @@
     <head prefix="og: http://ogp.me/ns# book: http://ogp.me/ns/book#">
         
         <meta charset="UTF-8">
-        <title>基本工具 Basic Utilities | Guava学习笔记</title>
+        <title>样例代码 | Guava学习笔记</title>
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="robots" content="index, follow">
@@ -13,13 +13,13 @@
         <meta name="generator" content="www.gitbook.io">
 
         
-        <link rel="next" href="../BasicUtilities/UsingAndAvoidingNull.html" />
+        <link rel="next" href="../EventBus/README.html" />
         
         
-        <link rel="prev" href="../index.html" />
+        <link rel="prev" href="../Hash/README.html" />
         
 
-        <meta property="og:title" content="基本工具 Basic Utilities | Guava学习笔记">
+        <meta property="og:title" content="样例代码 | Guava学习笔记">
         <meta property="og:site_name" content="Guava学习笔记">
         <meta property="og:type" content="book">
         <meta property="og:locale" content="en_US">
@@ -42,7 +42,7 @@
 
 
         
-    <div class="book" data-github="xionglie/note-learning-guava" data-level="1" data-basepath=".." data-revision="1399431922929">
+    <div class="book" data-github="xionglie/note-learning-guava" data-level="10.1" data-basepath=".." data-revision="1399431922929">
     <div class="book-header">
     <!-- Actions Left -->
     
@@ -105,7 +105,7 @@
             <a href="https://github.com/xionglie/note-learning-guava/issues" target="blank">Questions and Issues</a>
         </li>
         <li>
-            <a href="https://github.com/xionglie/note-learning-guava/edit/master/BasicUtilities/README.md" target="blank">Edit and Contribute</a>
+            <a href="https://github.com/xionglie/note-learning-guava/edit/master/Hash/Example.md" target="blank">Edit and Contribute</a>
         </li>
         <li class="divider"></li>
         
@@ -350,7 +350,7 @@
             <div class="page-wrapper" tabindex="-1">
                 <div class="book-progress">
     <div class="bar">
-        <div class="inner" style="width: 4%;min-width: 0%;"></div>
+        <div class="inner" style="width: 32%;min-width: 28%;"></div>
     </div>
     <div class="chapters">
     
@@ -358,19 +358,19 @@
     
         <a href="../BasicUtilities/README.html" title="基本工具 Basic Utilities" class="chapter done new-chapter" data-progress="1" style="left: 4%;"></a>
     
-        <a href="../BasicUtilities/UsingAndAvoidingNull.html" title="Using and avoiding null" class="chapter  " data-progress="1.1" style="left: 8%;"></a>
+        <a href="../BasicUtilities/UsingAndAvoidingNull.html" title="Using and avoiding null" class="chapter done " data-progress="1.1" style="left: 8%;"></a>
     
-        <a href="../BasicUtilities/Preconditions.html" title="Preconditions" class="chapter  " data-progress="1.2" style="left: 12%;"></a>
+        <a href="../BasicUtilities/Preconditions.html" title="Preconditions" class="chapter done " data-progress="1.2" style="left: 12%;"></a>
     
-        <a href="../BasicUtilities/Ordering.html" title="Ordering" class="chapter  " data-progress="1.3" style="left: 16%;"></a>
+        <a href="../BasicUtilities/Ordering.html" title="Ordering" class="chapter done " data-progress="1.3" style="left: 16%;"></a>
     
-        <a href="../BasicUtilities/ObjectCommonUtilities.html" title="Object common methods" class="chapter  " data-progress="1.4" style="left: 20%;"></a>
+        <a href="../BasicUtilities/ObjectCommonUtilities.html" title="Object common methods" class="chapter done " data-progress="1.4" style="left: 20%;"></a>
     
-        <a href="../BasicUtilities/Throwables.html" title="Throwables" class="chapter  " data-progress="1.5" style="left: 24%;"></a>
+        <a href="../BasicUtilities/Throwables.html" title="Throwables" class="chapter done " data-progress="1.5" style="left: 24%;"></a>
     
-        <a href="../Hash/README.html" title="散列[Hash]" class="chapter  " data-progress="10" style="left: 28%;"></a>
+        <a href="../Hash/README.html" title="散列[Hash]" class="chapter done " data-progress="10" style="left: 28%;"></a>
     
-        <a href="../Hash/Example.html" title="样例代码" class="chapter  " data-progress="10.1" style="left: 32%;"></a>
+        <a href="../Hash/Example.html" title="样例代码" class="chapter done " data-progress="10.1" style="left: 32%;"></a>
     
         <a href="../EventBus/README.html" title="事件总线[EventBus]" class="chapter  " data-progress="11" style="left: 36%;"></a>
     
@@ -411,16 +411,18 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_6">
+                    <section class="normal" id="section-gitbook_1">
                     
-                        <h1 id="1-basic-utilities-">1. 基本工具 [Basic utilities]</h1>
-<p>让使用Java语言变得更舒适</p>
-<p>1.1 使用和避免null：null是模棱两可的，会引起令人困惑的错误，有些时候它让人很不舒服。很多Guava工具类用快速失败拒绝null值，而不是盲目地接受</p>
-<p>1.2 前置条件: 让方法中的条件检查更简单</p>
-<p>1.3 常见Object方法: 简化Object方法实现，如hashCode()和toString()</p>
-<p>1.4 排序: Guava强大的”流畅风格比较器”</p>
-<p>1.5 Throwables：简化了异常和错误的传播与检查</p>
+                        <h1 id="hash-">Hash样例代码</h1>
+<p>对字符串或文件md5</p>
+<pre><code>public static String md5(String str) {
+        return Hashing.md5().hashBytes(str.getBytes()).toString();
+    }
 
+    public static String md5(File file) throws IOException {
+        return Files.hash(file, Hashing.md5()).toString();
+    }
+</code></pre>
                     
                     </section>
                 
@@ -429,10 +431,10 @@
         </div>
 
         
-        <a href="../index.html" class="navigation navigation-prev"><i class="fa fa-angle-left"></i></a>
+        <a href="../Hash/README.html" class="navigation navigation-prev"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../BasicUtilities/UsingAndAvoidingNull.html" class="navigation navigation-next"><i class="fa fa-angle-right"></i></a>
+        <a href="../EventBus/README.html" class="navigation navigation-next"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
