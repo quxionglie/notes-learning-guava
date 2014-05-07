@@ -1,6 +1,8 @@
 散列[\[Hash\]](https://code.google.com/p/guava-libraries/wiki/HashingExplained)
 ========
 
+[原文链接](http://code.google.com/p/guava-libraries/wiki/HashingExplained)
+
 #概述
 Java内建的散列码[hash code]概念被限制为32位，并且没有分离散列算法和它们所作用的数据，因此很难用备选算法进行替换。此外，使用Java内建方法实现的散列码通常是劣质的，部分是因为它们最终都依赖于JDK类中已有的劣质散列码。
 

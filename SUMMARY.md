@@ -21,6 +21,7 @@
     * [关闭资源ClosingResources](IO/ClosingResources.md)
     * [Files类常用方法](IO/Files.md)
 * [散列[Hash]](Hash/README.md)
+    * [样例代码](Hash/Example.md)
 * [事件总线[EventBus]](EventBus/README.md)
 * [数学运算[Math]](Math/README.md)
 * [反射[Reflection]](Reflection/README.md)
