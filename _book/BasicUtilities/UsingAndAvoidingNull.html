@@ -1,0 +1,585 @@
+<!DOCTYPE HTML>
+<html lang="en-US" manifest="../manifest.appcache">
+    <head prefix="og: http://ogp.me/ns# book: http://ogp.me/ns/book#">
+        
+        <meta charset="UTF-8">
+        <title>Using and avoiding null | Guava学习笔记</title>
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="robots" content="index, follow">
+        <meta name="author" content="xionglie">
+        <meta name="description" content="[Guava学习笔记](http://xionglie.github.io/note-learning-guava)">
+        <meta name="keywords" content="gitbook,github" >
+        <meta name="generator" content="www.gitbook.io">
+
+        
+        <link rel="next" href="../BasicUtilities/Preconditions.html" />
+        
+        
+        <link rel="prev" href="../BasicUtilities/README.html" />
+        
+
+        <meta property="og:title" content="Using and avoiding null | Guava学习笔记">
+        <meta property="og:site_name" content="Guava学习笔记">
+        <meta property="og:type" content="book">
+        <meta property="og:locale" content="en_US">
+
+        <meta property="book:author" content="https://github.com/xionglie">
+        <meta property="book:tag" content="GitBook">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    </head>
+    <body>
+        
+
+        <link rel="stylesheet" href="../gitbook/style.css">
+        
+
+
+        
+    <div class="book" data-github="xionglie/note-learning-guava" data-level="1.1" data-basepath=".." data-revision="1399425441056">
+    <div class="book-header">
+    <!-- Actions Left -->
+    
+    <a href="https://github.com/xionglie/note-learning-guava" target="_blank" class="btn pull-left"><i class="fa fa-github-alt"></i></a>
+    
+    <a href="#" class="btn pull-left toggle-summary"><i class="fa fa-align-justify"></i></a>
+    <a href="#" class="btn pull-left toggle-search"><i class="fa fa-search"></i></a>
+    <span id="font-settings-wrapper">
+        <a href="#" class="btn pull-left toggle-font-settings"><i class="fa fa-font"></i>
+        </a>
+        <div class="dropdown-menu font-settings">
+	<div class="dropdown-caret">
+  <span class="caret-outer"></span>
+  <span class="caret-inner"></span>
+</div>
+
+	<div class="btn-group btn-block">
+		<button id="reduce-font-size" class="btn btn-default">A</button>
+		<button id="enlarge-font-size" class="btn btn-default">A</button>
+	</div>
+
+	<ul class="list-group font-family-list">
+		<li class="list-group-item" data-font="0">Serif</li>
+		<li class="list-group-item" data-font="1">Sans</li>
+	</ul>
+
+	<div class="btn-group btn-group-xs btn-block color-theme-list">
+	  <button type="button" class="btn btn-default" id="color-theme-preview-0" data-theme="0">White</button>
+	  <button type="button" class="btn btn-default" id="color-theme-preview-1" data-theme="1">Sepia</button>
+	  <button type="button" class="btn btn-default" id="color-theme-preview-2" data-theme="2">Night</button>
+	</div>
+</div>
+
+    </span>
+
+    <!-- Actions Right -->
+    <a href="#" target="_blank" class="btn pull-right" data-sharing="google-plus"><i class="fa fa-google-plus"></i></a>
+    <a href="#" target="_blank" class="btn pull-right" data-sharing="facebook"><i class="fa fa-facebook"></i></a>
+    <a href="#" target="_blank" class="btn pull-right" data-sharing="twitter"><i class="fa fa-twitter"></i></a>
+
+    
+    <a href="https://github.com/xionglie/note-learning-guava/stargazers" target="_blank" class="btn pull-right count-star"><i class="fa fa-star-o"></i> Star (<span>-</span>)</a>
+    <a href="https://github.com/xionglie/note-learning-guava/watchers" target="_blank" class="btn pull-right count-watch"><i class="fa fa-eye"></i> Watch (<span>-</span>)</a>
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-spinner fa-spin"></i>
+        <a href="../" >Guava学习笔记</a>
+    </h1>
+</div>
+
+    <div class="book-summary">
+    <div class="book-search">
+        <input type="text" placeholder="Search" class="form-control" />
+    </div>
+    <ul class="summary">
+        
+        <li>
+            <a href="https://github.com/xionglie" target="blank">About the author</a>
+        </li>
+        <li>
+            <a href="https://github.com/xionglie/note-learning-guava/issues" target="blank">Questions and Issues</a>
+        </li>
+        <li>
+            <a href="https://github.com/xionglie/note-learning-guava/edit/master/BasicUtilities/UsingAndAvoidingNull.md" target="blank">Edit and Contribute</a>
+        </li>
+        <li class="divider"></li>
+        
+        <li data-level="0" data-path="index.html">
+            <a href="../"><i class="fa fa-check"></i> Introduction</a>
+        </li>
+        
+            <li  data-level="1" data-path="BasicUtilities/README.html">
+                
+                <a href="../BasicUtilities/README.html">
+                    <i class="fa fa-check"></i> <b>1.</b> 基本工具 Basic Utilities
+                </a>
+                
+                
+                <ul class="articles">
+                    
+                        <li  data-level="1.1" data-path="BasicUtilities/UsingAndAvoidingNull.html">
+                            
+                            <a href="../BasicUtilities/UsingAndAvoidingNull.html">
+                                <i class="fa fa-check"></i> <b>1.1.</b> Using and avoiding null
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="1.2" data-path="BasicUtilities/Preconditions.html">
+                            
+                            <a href="../BasicUtilities/Preconditions.html">
+                                <i class="fa fa-check"></i> <b>1.2.</b> Preconditions
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="1.3" data-path="BasicUtilities/Ordering.html">
+                            
+                            <a href="../BasicUtilities/Ordering.html">
+                                <i class="fa fa-check"></i> <b>1.3.</b> Ordering
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="1.4" data-path="BasicUtilities/ObjectCommonUtilities.html">
+                            
+                            <a href="../BasicUtilities/ObjectCommonUtilities.html">
+                                <i class="fa fa-check"></i> <b>1.4.</b> Object common methods
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="1.5" data-path="BasicUtilities/Throwables.html">
+                            
+                            <a href="../BasicUtilities/Throwables.html">
+                                <i class="fa fa-check"></i> <b>1.5.</b> Throwables
+                            </a>
+                            
+                        </li>
+                    
+                </ul>
+                
+            </li>
+        
+            <li  data-level="2" data-path="Collections/README.html">
+                
+                <a href="../Collections/README.html">
+                    <i class="fa fa-check"></i> <b>2.</b> 集合 Collections
+                </a>
+                
+                
+                <ul class="articles">
+                    
+                        <li  data-level="2.1" data-path="Collections/ImmutableCollections.html">
+                            
+                            <a href="../Collections/ImmutableCollections.html">
+                                <i class="fa fa-check"></i> <b>2.1.</b> Immutable collections
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="2.2" data-path="Collections/NewCollectionTypes.html">
+                            
+                            <a href="../Collections/NewCollectionTypes.html">
+                                <i class="fa fa-check"></i> <b>2.2.</b> New Collection Types
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="2.3" data-path="Collections/UtilityClasses.html">
+                            
+                            <a href="../Collections/UtilityClasses.html">
+                                <i class="fa fa-check"></i> <b>2.3.</b> Utility Classes
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="2.4" data-path="Collections/ExtensionUtilities.html">
+                            
+                            <a href="../Collections/ExtensionUtilities.html">
+                                <i class="fa fa-check"></i> <b>2.4.</b> Extension Utilities
+                            </a>
+                            
+                        </li>
+                    
+                </ul>
+                
+            </li>
+        
+            <li  data-level="3" data-path="Caches/README.html">
+                
+                <a href="../Caches/README.html">
+                    <i class="fa fa-check"></i> <b>3.</b> 缓存[Caches]
+                </a>
+                
+                
+            </li>
+        
+            <li  data-level="4" data-path="FunctionalIdioms/README.html">
+                
+                <a href="../FunctionalIdioms/README.html">
+                    <i class="fa fa-check"></i> <b>4.</b> 函数式风格[Functional idioms]
+                </a>
+                
+                
+            </li>
+        
+            <li  data-level="5" data-path="Concurrency/README.html">
+                
+                <a href="../Concurrency/README.html">
+                    <i class="fa fa-check"></i> <b>5.</b> 并发[Concurrency]
+                </a>
+                
+                
+            </li>
+        
+            <li  data-level="6" data-path="Strings/README.html">
+                
+                <a href="../Strings/README.html">
+                    <i class="fa fa-check"></i> <b>6.</b> 字符串处理[Strings]
+                </a>
+                
+                
+            </li>
+        
+            <li  data-level="7" data-path="Primitives/README.html">
+                
+                <a href="../Primitives/README.html">
+                    <i class="fa fa-check"></i> <b>7.</b> 原生类型[Primitives]
+                </a>
+                
+                
+            </li>
+        
+            <li  data-level="8" data-path="Ranges/README.html">
+                
+                <a href="../Ranges/README.html">
+                    <i class="fa fa-check"></i> <b>8.</b> 区间[Ranges]
+                </a>
+                
+                
+            </li>
+        
+            <li  data-level="9" data-path="IO/README.html">
+                
+                <a href="../IO/README.html">
+                    <i class="fa fa-check"></i> <b>9.</b> I/O
+                </a>
+                
+                
+                <ul class="articles">
+                    
+                        <li  data-level="9.1" data-path="IO/ClosingResources.html">
+                            
+                            <a href="../IO/ClosingResources.html">
+                                <i class="fa fa-check"></i> <b>9.1.</b> 关闭资源ClosingResources
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="9.2" data-path="IO/Files.html">
+                            
+                            <a href="../IO/Files.html">
+                                <i class="fa fa-check"></i> <b>9.2.</b> Files类常用方法
+                            </a>
+                            
+                        </li>
+                    
+                </ul>
+                
+            </li>
+        
+            <li  data-level="10" data-path="Hash/README.html">
+                
+                <a href="../Hash/README.html">
+                    <i class="fa fa-check"></i> <b>10.</b> 散列[Hash]
+                </a>
+                
+                
+                <ul class="articles">
+                    
+                        <li  data-level="10.1" data-path="Hash/Example.html">
+                            
+                            <a href="../Hash/Example.html">
+                                <i class="fa fa-check"></i> <b>10.1.</b> 样例代码
+                            </a>
+                            
+                        </li>
+                    
+                </ul>
+                
+            </li>
+        
+            <li  data-level="11" data-path="EventBus/README.html">
+                
+                <a href="../EventBus/README.html">
+                    <i class="fa fa-check"></i> <b>11.</b> 事件总线[EventBus]
+                </a>
+                
+                
+            </li>
+        
+            <li  data-level="12" data-path="Math/README.html">
+                
+                <a href="../Math/README.html">
+                    <i class="fa fa-check"></i> <b>12.</b> 数学运算[Math]
+                </a>
+                
+                
+            </li>
+        
+            <li  data-level="13" data-path="Reflection/README.html">
+                
+                <a href="../Reflection/README.html">
+                    <i class="fa fa-check"></i> <b>13.</b> 反射[Reflection]
+                </a>
+                
+                
+            </li>
+        
+    </ul>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="page-wrapper" tabindex="-1">
+                <div class="book-progress">
+    <div class="bar">
+        <div class="inner" style="width: 8%;min-width: 4%;"></div>
+    </div>
+    <div class="chapters">
+    
+        <a href="../index.html" title="Introduction" class="chapter done new-chapter" data-progress="0" style="left: 0%;"></a>
+    
+        <a href="../BasicUtilities/README.html" title="基本工具 Basic Utilities" class="chapter done new-chapter" data-progress="1" style="left: 4%;"></a>
+    
+        <a href="../BasicUtilities/UsingAndAvoidingNull.html" title="Using and avoiding null" class="chapter done " data-progress="1.1" style="left: 8%;"></a>
+    
+        <a href="../BasicUtilities/Preconditions.html" title="Preconditions" class="chapter  " data-progress="1.2" style="left: 12%;"></a>
+    
+        <a href="../BasicUtilities/Ordering.html" title="Ordering" class="chapter  " data-progress="1.3" style="left: 16%;"></a>
+    
+        <a href="../BasicUtilities/ObjectCommonUtilities.html" title="Object common methods" class="chapter  " data-progress="1.4" style="left: 20%;"></a>
+    
+        <a href="../BasicUtilities/Throwables.html" title="Throwables" class="chapter  " data-progress="1.5" style="left: 24%;"></a>
+    
+        <a href="../Hash/README.html" title="散列[Hash]" class="chapter  " data-progress="10" style="left: 28%;"></a>
+    
+        <a href="../Hash/Example.html" title="样例代码" class="chapter  " data-progress="10.1" style="left: 32%;"></a>
+    
+        <a href="../EventBus/README.html" title="事件总线[EventBus]" class="chapter  " data-progress="11" style="left: 36%;"></a>
+    
+        <a href="../Math/README.html" title="数学运算[Math]" class="chapter  " data-progress="12" style="left: 40%;"></a>
+    
+        <a href="../Reflection/README.html" title="反射[Reflection]" class="chapter  " data-progress="13" style="left: 44%;"></a>
+    
+        <a href="../Collections/README.html" title="集合 Collections" class="chapter  new-chapter" data-progress="2" style="left: 48%;"></a>
+    
+        <a href="../Collections/ImmutableCollections.html" title="Immutable collections" class="chapter  " data-progress="2.1" style="left: 52%;"></a>
+    
+        <a href="../Collections/NewCollectionTypes.html" title="New Collection Types" class="chapter  " data-progress="2.2" style="left: 56%;"></a>
+    
+        <a href="../Collections/UtilityClasses.html" title="Utility Classes" class="chapter  " data-progress="2.3" style="left: 60%;"></a>
+    
+        <a href="../Collections/ExtensionUtilities.html" title="Extension Utilities" class="chapter  " data-progress="2.4" style="left: 64%;"></a>
+    
+        <a href="../Caches/README.html" title="缓存[Caches]" class="chapter  new-chapter" data-progress="3" style="left: 68%;"></a>
+    
+        <a href="../FunctionalIdioms/README.html" title="函数式风格[Functional idioms]" class="chapter  new-chapter" data-progress="4" style="left: 72%;"></a>
+    
+        <a href="../Concurrency/README.html" title="并发[Concurrency]" class="chapter  new-chapter" data-progress="5" style="left: 76%;"></a>
+    
+        <a href="../Strings/README.html" title="字符串处理[Strings]" class="chapter  new-chapter" data-progress="6" style="left: 80%;"></a>
+    
+        <a href="../Primitives/README.html" title="原生类型[Primitives]" class="chapter  new-chapter" data-progress="7" style="left: 84%;"></a>
+    
+        <a href="../Ranges/README.html" title="区间[Ranges]" class="chapter  new-chapter" data-progress="8" style="left: 88%;"></a>
+    
+        <a href="../IO/README.html" title="I/O" class="chapter  new-chapter" data-progress="9" style="left: 92%;"></a>
+    
+        <a href="../IO/ClosingResources.html" title="关闭资源ClosingResources" class="chapter  " data-progress="9.1" style="left: 96%;"></a>
+    
+        <a href="../IO/Files.html" title="Files类常用方法" class="chapter  " data-progress="9.2" style="left: 100%;"></a>
+    
+    </div>
+</div>
+
+                <div class="page-inner">
+                
+                    <section class="normal" id="section-gitbook_23">
+                    
+                        <h1 id="-null">使用和避免null</h1>
+<p>null是模棱两可的，会引起令人困惑的错误，有些时候它让人很不舒服。很多Guava工具类用快速失败拒绝null值，而不是盲目地接受</p>
+<h1 id="1-optional">1. Optional</h1>
+<p>大多数情况下，开发人员使用null表明的是某种缺失情形：可能是已经有一个默认值，或没有值，或找不到值。例如，Map.get返回null就表示找不到给定键对应的值。</p>
+<p>Guava用Optional<T>表示可能为null的T类型引用。一个Optional实例可能包含非null的引用（我们称之为引用存在），也可能什么也不包括（称之为引用缺失）。它从不说包含的是null值，而是用存在或缺失来表示。但Optional从不会包含null值引用。</p>
+<pre><code class="lang-java">Optional&lt;Integer&gt; possible = Optional.of(<span class="hljs-number">5</span>);
+possible.isPresent(); <span class="hljs-comment">// returns true</span>
+possible.get(); <span class="hljs-comment">// returns 5</span>
+</code></pre>
+<p>Optional无意直接模拟其他编程环境中的”可选” or “可能”语义，但它们的确有相似之处。</p>
+<p>Optional最常用的一些操作被罗列如下：</p>
+<p>创建Optional实例（以下都是静态方法）：</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明     </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Optional.of(T)</td>
+<td>创建指定引用的Optional实例，若引用为null则快速失败     </td>
+</tr>
+<tr>
+<td>Optional.absent()</td>
+<td>创建引用缺失的Optional实例                         </td>
+</tr>
+<tr>
+<td>Optional.fromNullable(T)</td>
+<td>创建指定引用的Optional实例，若引用为null则表示缺失     </td>
+</tr>
+</tbody>
+</table>
+<p>用Optional实例查询引用（以下都是非静态方法）：</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明     </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>boolean isPresent()</td>
+<td>如果Optional包含非null的引用（引用存在），返回true</td>
+</tr>
+<tr>
+<td>T get()</td>
+<td>返回Optional所包含的引用，若引用缺失，则抛出java.lang.IllegalStateException</td>
+</tr>
+<tr>
+<td>T or(T)</td>
+<td>返回Optional所包含的引用，若引用缺失，返回指定的值</td>
+</tr>
+<tr>
+<td>T orNull()</td>
+<td>返回Optional所包含的引用，若引用缺失，返回null</td>
+</tr>
+<tr>
+<td>Set<T> asSet()</td>
+<td>返回Optional所包含引用的单例不可变集，如果引用存在，返回一个只有单一元素的集合，如果引用缺失，返回一个空集合。</td>
+</tr>
+</tbody>
+</table>
+<p>使用Optional的意义在哪儿？</p>
+<p>使用Optional除了赋予null语义，增加了可读性，最大的优点在于它是一种傻瓜式的防护。Optional迫使你积极思考引用缺失的情况，因为你必须显式地从Optional获取引用。直接使用null很容易让人忘掉某些情形，尽管FindBugs可以帮助查找null相关的问题，但是我们还是认为它并不能准确地定位问题根源。</p>
+<p>如同输入参数，方法的返回值也可能是null。和其他人一样，你绝对很可能会忘记别人写的方法method(a,b)会返回一个null，就好像当你实现method(a,b)时，也很可能忘记输入参数a可以为null。将方法的返回类型指定为Optional，也可以迫使调用者思考返回的引用缺失的情形。</p>
+<p>其他处理null的便利方法</p>
+<p>当你需要用一个默认值来替换可能的null，请使用Objects.firstNonNull(T, T) 方法。如果两个值都是null，该方法会抛出NullPointerException。Optional也是一个比较好的替代方案，例如：Optional.of(first).or(second).</p>
+<p>还有其它一些方法专门处理null或空字符串：emptyToNull(String)，nullToEmpty(String)，isNullOrEmpty(String)。我们想要强调的是，这些方法主要用来与混淆null/空的API进行交互。当每次你写下混淆null/空的代码时，Guava团队都泪流满面。（好的做法是积极地把null和空区分开，以表示不同的含义，在代码中把null和空同等对待是一种令人不安的坏味道。</p>
+<h1 id="2-">2. 如何使用</h1>
+<h2 id="-java-optional">你应该更新的Java知识之Optional</h2>
+<p><a href="http://www.blogbus.com/logs/235329092.html" target="_blank">你应该更新的Java知识之Optional</a></p>
+<p>java.lang.NullPointerException，只要敢自称Java程序员，那对这个异常就再熟悉不过了。为了防止抛出这个异常，我们经常会写出这样的代码：</p>
+<pre><code class="lang-java">Person person = people.find(<span class="hljs-string">"John Smith"</span>);
+<span class="hljs-keyword">if</span> (person != <span class="hljs-keyword">null</span>) {
+ person.doSomething();
+}
+</code></pre>
+<p>使用Optional</p>
+<pre><code class="lang-java">Optional person = people.find(<span class="hljs-string">"John Smith"</span>);
+<span class="hljs-keyword">if</span> (person.isPresent()) {
+ person.get().doSomething();
+}
+</code></pre>
+<p>这里如果isPresent()返回false，说明这是个空对象，否则，我们就可以把其中的内容取出来做自己想做的操作了。</p>
+<p>如果你期待的是代码量的减少，恐怕这里要让你失望了。单从代码量上来说，Optional甚至比原来的代码还多。但好处在于，你绝对不会忘记判空，因为这里我们得到的不是Person类的对象，而是Optional。</p>
+<p>有时候，当一个对象为null的时候，我们并不是简单的忽略，而是给出一个缺省值，比如找不到这个人，任务就交给经理来做。使用Optional可以很容易地做到这一点，以上面的代码为例：</p>
+<pre><code class="lang-java">  Optional person = people.find(<span class="hljs-string">"John Smith"</span>);
+  person.or(manager).doSomething()
+</code></pre>
+<p>说白了，Optinal是给了我们一个更有意义的“空”。</p>
+<h2 id="-java-optional-">你应该更新的Java知识之Optional高级用法</h2>
+<p><a href="http://dreamhead.blogbus.com/logs/235334714.html" target="_blank">http://dreamhead.blogbus.com/logs/235334714.html</a></p>
+<h1 id="3-optional">3. 如何正确的使用 Optional</h1>
+<h3 id="guava-optional-how-to-use-the-correct">Guava Optional. How to use the correct</h3>
+<p><a href="http://stackoverflow.com/questions/11561789/guava-optional-how-to-use-the-correct" target="_blank">http://stackoverflow.com/questions/11561789/guava-optional-how-to-use-the-correct</a></p>
+<h4 id="answer">Answer</h4>
+<p>Guava contributor here...</p>
+<p>Any or all of these things are fine, but some of them may be overkill.</p>
+<p>Generally, as discussed in <a href="http://stackoverflow.com/a/9561334/869736" target="_blank">this StackOverflow answer</a>, Optional is primarily used for two things: to make it clearer what you would&#39;ve meant by null, and in method return values to make sure the caller takes care of the &quot;absent&quot; case (which it&#39;s easier to forget with null). We certainly don&#39;t advocate replacing every nullable value with an Optional everywhere in your code -- we certainly don&#39;t do that within Guava itself!</p>
+<p>A lot of this will have to be your decision -- there&#39;s no universal rule, it&#39;s a relatively subjective judgement, and I don&#39;t have enough context to determine what I&#39;d do in your place -- but based on what context you&#39;ve provided, I&#39;d consider making the methods return Optional, but probably wouldn&#39;t change any of the other fields or anything.</p>
+<hr>
+<h3 id="what-s-the-point-of-guava-s-optional-class">What&#39;s the point of Guava&#39;s Optional class</h3>
+<p><a href="http://stackoverflow.com/questions/9561295/whats-the-point-of-guavas-optional-class" target="_blank">http://stackoverflow.com/questions/9561295/whats-the-point-of-guavas-optional-class</a></p>
+<h4 id="question">Question</h4>
+<p>I&#39;ve recently read about this and seen people using this class, but in pretty much all cases, using null would&#39;ve worked as well - if not more intuitively. Can someone provide a concrete example where Optional would achieve something that null couldn&#39;t or in a much cleaner way? The only thing I can think of is to use it with Maps that don&#39;t accept null keys, but even that could be done with a side &quot;mapping&quot; of null&#39;s value. Can anyone provide me with a more convincing argument? Thank you.</p>
+<h4 id="answers">Answers</h4>
+<p>Guava team member here.</p>
+<p>Probably the single biggest disadvantage of null is that it&#39;s not obvious what it should mean in any given context: it doesn&#39;t have an illustrative name. It&#39;s not always obvious that null means &quot;no value for this parameter&quot; -- heck, as a return value, sometimes it means &quot;error&quot;, or even &quot;success&quot; (!!), or simply &quot;the correct answer is nothing&quot;. Optional is frequently the concept you actually mean when you make a variable nullable, but not always. When it isn&#39;t, we recommend that you write your own class, similar to Optional but with a different naming scheme, to make clear what you actually mean.</p>
+<p>But I would say the biggest advantage of Optional isn&#39;t in readability: the advantage is its idiot-proof-ness. It forces you to actively think about the absent case if you want your program to compile at all, since you have to actively unwrap the Optional and address that case. Null makes it disturbingly easy to simply forget things, and though FindBugs helps, I don&#39;t think it addresses the issue nearly as well. This is especially relevant when you&#39;re returning values that may or may not be &quot;present.&quot; You (and others) are far more likely to forget that other.method(a, b) could return a null value than you&#39;re likely to forget that a could be null when you&#39;re implementing other.method. Returning Optional makes it impossible for callers to forget that case, since they have to unwrap the object themselves.</p>
+<p>For these reasons, we recommend that you use Optional as a return type for your methods, but not necessarily in your method arguments.</p>
+<p>(This is totally cribbed, by the way, from the discussion <a href="https://plus.google.com/103410944693236881656/posts/ayfR8F56PGy" target="_blank">here</a>.)</p>
+<h1 id="4-">4. 总结</h1>
+<ul>
+<li>Optinal是给了一个更有意义的“空”；</li>
+<li>Optional并不能使代码量的减少。但好处在于，你绝对不会忘记判空；</li>
+<li>不要在代码中每一个可能为空的值都使用Optinal替换；</li>
+</ul>
+<p>扩展: @Nullable @ParametersAreNonnullByDefault</p>
+
+                    
+                    </section>
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../BasicUtilities/README.html" class="navigation navigation-prev"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../BasicUtilities/Preconditions.html" class="navigation navigation-next"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.1.3/ace.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.1.3/mode-javascript.js"></script>
+        <script src="../gitbook/jsrepl/jsrepl.js" id="jsrepl-script"></script>
+        <script src="../gitbook/app.js"></script>
+        
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-mixpanel/plugin.js"></script>
+    
+
+    
+    <script src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-mathjax/plugin.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {};
+    gitbook.start(config);
+});
+</script>
+
+    </body>
+</html>
