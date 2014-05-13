@@ -42,7 +42,7 @@
 
 
         
-    <div class="book" data-github="xionglie/note-learning-guava" data-level="6" data-basepath=".." data-revision="1399431922929">
+    <div class="book" data-github="xionglie/note-learning-guava" data-level="6" data-basepath=".." data-revision="1399956693278">
     <div class="book-header">
     <!-- Actions Left -->
     
@@ -419,7 +419,7 @@
 译者：沈义扬，校对：丁一</p>
 <h1 id="-joiner-">连接器[Joiner]</h1>
 <p>用分隔符把字符串序列连接起来也可能会遇上不必要的麻烦。如果字符串序列中含有null，那连接操作会更难。Fluent风格的Joiner让连接字符串更简单。</p>
-<pre><code>Joiner joiner = Joiner.on(&quot;; &quot;).skipNulls();
+<pre><code>Joiner joiner = Joiner.on(&quot;;&quot;).skipNulls();
 return joiner.join(&quot;Harry&quot;, null, &quot;Ron&quot;, &quot;Hermione&quot;);
 </code></pre><p>上述代码返回”Harry; Ron; Hermione”。另外，useForNull(String)方法可以给定某个字符串来替换null，而不像skipNulls()方法是直接忽略null。 Joiner也可以用来连接对象类型，在这种情况下，它会把对象的toString()值连接起来。</p>
 <pre><code>Joiner.on(&quot;,&quot;).join(Arrays.asList(1, 5, 7)); // returns &quot;1,5,7&quot;
