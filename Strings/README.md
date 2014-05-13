@@ -8,7 +8,7 @@
 #连接器[Joiner]
 用分隔符把字符串序列连接起来也可能会遇上不必要的麻烦。如果字符串序列中含有null，那连接操作会更难。Fluent风格的Joiner让连接字符串更简单。
 
-    Joiner joiner = Joiner.on("; ").skipNulls();
+    Joiner joiner = Joiner.on(";").skipNulls();
     return joiner.join("Harry", null, "Ron", "Hermione");
 
 上述代码返回”Harry; Ron; Hermione”。另外，useForNull(String)方法可以给定某个字符串来替换null，而不像skipNulls()方法是直接忽略null。 Joiner也可以用来连接对象类型，在这种情况下，它会把对象的toString()值连接起来。
@@ -37,22 +37,22 @@ JDK内建的字符串拆分工具有一些古怪的特性。比如，String.spli
 
 #拆分器工厂[Base Factories]
 
-方法	                      | 描述	           | 范例
----	                      | ---	           | ---
-Splitter.on(char)	        | 按单个字符拆分	 | Splitter.on(‘;’)
-Splitter.on(CharMatcher)	| 按字符匹配器拆分	 | Splitter.on(CharMatcher.BREAKING_WHITESPACE) Splitter.on(CharMatcher.anyOf(";,."))
-Splitter.on(String)	      | 按字符串拆分	                                     | Splitter.on(“,   “)
-Splitter.on(Pattern) Splitter.onPattern(String)	| 按正则表达式拆分	             | Splitter.onPattern(“\r?\n”)
-Splitter.fixedLength(int)	| 按固定长度拆分；最后一段可能比给定长度短，但不会为空。   | Splitter.fixedLength(3)
+方法                       | 描述             | 范例
+---                       | ---               | ---
+Splitter.on(char)         | 按单个字符拆分     | Splitter.on(‘;’)
+Splitter.on(CharMatcher)  | 按字符匹配器拆分   | Splitter.on(CharMatcher.BREAKING_WHITESPACE) Splitter.on(CharMatcher.anyOf(";,."))
+Splitter.on(String)       | 按字符串拆分                                       | Splitter.on(“,   “)
+Splitter.on(Pattern) Splitter.onPattern(String) | 按正则表达式拆分               | Splitter.onPattern(“\r?\n”)
+Splitter.fixedLength(int) | 按固定长度拆分；最后一段可能比给定长度短，但不会为空。   | Splitter.fixedLength(3)
 
 ###拆分器修饰符
 
-方法	                     | 描述
----                      | ---
-omitEmptyStrings()	     | 从结果中自动忽略空字符串
-trimResults()	           | 移除结果字符串的前导空白和尾部空白
+方法                       | 描述
+---                         | ---
+omitEmptyStrings()          | 从结果中自动忽略空字符串
+trimResults()            | 移除结果字符串的前导空白和尾部空白
 trimResults(CharMatcher) | 给定匹配器，移除结果字符串的前导匹配字符和尾部匹配字符
-limit(int)	             | 限制拆分出的字符串数量
+limit(int)               | 限制拆分出的字符串数量
 
 如果你想要拆分器返回List，只要使用Lists.newArrayList(splitter.split(string))或类似方法。 警告：splitter实例总是不可变的。用来定义splitter目标语义的配置方法总会返回一个新的splitter实例。这使得splitter实例都是线程安全的，你可以将其定义为static final常量。
 
@@ -117,9 +117,9 @@ SINGLE_WIDTH
 
 方法                      | 描述
 ---                       | ---
-anyOf(CharSequence)	      | 枚举匹配字符。如CharMatcher.anyOf(“aeiou”)匹配小写英语元音
-is(char)	                | 给定单一字符匹配。
-inRange(char, char)	      | 给定字符范围匹配，如CharMatcher.inRange(‘a’, ‘z’)
+anyOf(CharSequence)       | 枚举匹配字符。如CharMatcher.anyOf(“aeiou”)匹配小写英语元音
+is(char)                  | 给定单一字符匹配。
+inRange(char, char)       | 给定字符范围匹配，如CharMatcher.inRange(‘a’, ‘z’)
 
 此外，CharMatcher还有negate()、and(CharMatcher)和or(CharMatcher)方法。
 
@@ -127,14 +127,14 @@ inRange(char, char)	      | 给定字符范围匹配，如CharMatcher.inRange(�
 
 CharMatcher提供了[多种多样的方法](http://docs.guava-libraries.googlecode.com/git-history/release/javadoc/com/google/common/base/CharMatcher.html#method_summary)操作CharSequence中的特定字符。其中最常用的罗列如下：
 
-方法                                | 描述
+方法                                 | 描述
 ---                                 | ---
-collapseFrom(CharSequence,   char)	| 把每组连续的匹配字符替换为特定字符。如WHITESPACE.collapseFrom(string, ‘ ‘)把字符串中的连续空白字符替换为单个空格。
-matchesAllOf(CharSequence)	        | 测试是否字符序列中的所有字符都匹配。
-removeFrom(CharSequence)	          | 从字符序列中移除所有匹配字符。
-retainFrom(CharSequence)	          | 在字符序列中保留匹配字符，移除其他字符。
-trimFrom(CharSequence)	            | 移除字符序列的前导匹配字符和尾部匹配字符。
-replaceFrom(CharSequence,   CharSequence)	| 用特定字符序列替代匹配字符。
+collapseFrom(CharSequence,   char)  | 把每组连续的匹配字符替换为特定字符。如WHITESPACE.collapseFrom(string, ‘ ‘)把字符串中的连续空白字符替换为单个空格。
+matchesAllOf(CharSequence)          | 测试是否字符序列中的所有字符都匹配。
+removeFrom(CharSequence)            | 从字符序列中移除所有匹配字符。
+retainFrom(CharSequence)            | 在字符序列中保留匹配字符，移除其他字符。
+trimFrom(CharSequence)              | 移除字符序列的前导匹配字符和尾部匹配字符。
+replaceFrom(CharSequence,   CharSequence) | 用特定字符序列替代匹配字符。
 
 所有这些方法返回String，除了matchesAllOf返回的是boolean。
 
@@ -158,13 +158,13 @@ Charsets针对所有Java平台都要保证支持的六种字符集提供了常�
 
 [CaseFormat](http://docs.guava-libraries.googlecode.com/git-history/release/javadoc/com/google/common/base/CaseFormat.html) 被用来方便地在各种ASCII大小写规范间转换字符串——比如，编程语言的命名规范。CaseFormat支持的格式如下：
 
-格式               | 范例
----               | ---
-LOWER_CAMEL	      | lowerCamel
-LOWER_HYPHEN	    | lower-hyphen
-LOWER_UNDERSCORE	| lower_underscore
-UPPER_CAMEL	      | UpperCamel
-UPPER_UNDERSCORE	| UPPER_UNDERSCORE
+格式                | 范例
+---                 | ---
+LOWER_CAMEL         | lowerCamel
+LOWER_HYPHEN        | lower-hyphen
+LOWER_UNDERSCORE    | lower_underscore
+UPPER_CAMEL         | UpperCamel
+UPPER_UNDERSCORE    | UPPER_UNDERSCORE
 
 CaseFormat的用法很直接：
 
