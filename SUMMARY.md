@@ -14,6 +14,8 @@
 * [缓存[Caches]](Caches/README.md)
 * [函数式风格[Functional idioms]](FunctionalIdioms/README.md)
 * [并发[Concurrency]](Concurrency/README.md)
+    * [ListenableFuture](Concurrency/ListenableFuture.md)
+    * [Service框架](Concurrency/Service.md)
 * [字符串处理[Strings]](Strings/README.md)
 * [原生类型[Primitives]](Primitives/README.md)
 * [区间[Ranges]](Ranges/README.md)
