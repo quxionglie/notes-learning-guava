@@ -1,7 +1,7 @@
 Guava学习笔记
 ======
 
-[Guava学习笔记](http://xionglie.github.io/notes-learning-guava)
+[Guava学习笔记](http://www.quxionglie.com/notes-learning-guava)
 
 笔记的大部分中文翻译内容来源于以下
 
