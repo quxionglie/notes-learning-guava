@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>函数式风格[Functional idioms] | Guava学习笔记</title>
+        <title>Service框架 | Guava学习笔记</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 0.5.3">
@@ -19,10 +19,10 @@
     <meta name="author" content="quxionglie">
     
     
-    <link rel="next" href="../Concurrency/README.html" />
+    <link rel="next" href="../Strings/README.html" />
     
     
-    <link rel="prev" href="../Caches/README.html" />
+    <link rel="prev" href="../Concurrency/ListenableFuture.html" />
     
 
         
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="quxionglie/notes-learning-guava" data-level="4" data-basepath=".." data-revision="1427342182661">
+    <div class="book" data-github="quxionglie/notes-learning-guava" data-level="5.2" data-basepath=".." data-revision="1427342182661">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -118,7 +118,7 @@
         
         
         <li>
-            <a href="https://github.com/quxionglie/notes-learning-guava/edit/master/FunctionalIdioms/README.md" target="blank" class="contribute-link">Edit and Contribute</a>
+            <a href="https://github.com/quxionglie/notes-learning-guava/edit/master/Concurrency/Service.md" target="blank" class="contribute-link">Edit and Contribute</a>
         </li>
         
 
@@ -501,7 +501,7 @@
             <div class="page-wrapper" tabindex="-1">
                 <div class="book-progress">
     <div class="bar">
-        <div class="inner" style="width: 48.148148148148145%;min-width: 44.44444444444444%;"></div>
+        <div class="inner" style="width: 59.25925925925926%;min-width: 55.55555555555556%;"></div>
     </div>
     <div class="chapters">
     
@@ -533,11 +533,11 @@
     
         <a href="../FunctionalIdioms/README.html" title="函数式风格[Functional idioms]" class="chapter done new-chapter" data-progress="4" style="left: 48.148148148148145%;"></a>
     
-        <a href="../Concurrency/README.html" title="并发[Concurrency]" class="chapter  new-chapter" data-progress="5" style="left: 51.851851851851855%;"></a>
+        <a href="../Concurrency/README.html" title="并发[Concurrency]" class="chapter done new-chapter" data-progress="5" style="left: 51.851851851851855%;"></a>
     
-        <a href="../Concurrency/ListenableFuture.html" title="ListenableFuture" class="chapter  " data-progress="5.1" style="left: 55.55555555555556%;"></a>
+        <a href="../Concurrency/ListenableFuture.html" title="ListenableFuture" class="chapter done " data-progress="5.1" style="left: 55.55555555555556%;"></a>
     
-        <a href="../Concurrency/Service.html" title="Service框架" class="chapter  " data-progress="5.2" style="left: 59.25925925925926%;"></a>
+        <a href="../Concurrency/Service.html" title="Service框架" class="chapter done " data-progress="5.2" style="left: 59.25925925925926%;"></a>
     
         <a href="../Strings/README.html" title="字符串处理[Strings]" class="chapter  new-chapter" data-progress="6" style="left: 62.96296296296296%;"></a>
     
@@ -566,152 +566,76 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_14">
+                    <section class="normal" id="section-gitbook_12">
                     
-                        <h1 id="-functional-idioms-">函数式风格[Functional idioms]</h1>
-<p>Guava的函数式支持可以显著简化代码，但请谨慎使用它</p>
-<p>注意事项
-截至JDK7，Java中也只能通过笨拙冗长的匿名类来达到近似函数式编程的效果。预计JDK8中会有所改变，但Guava现在就想给JDK5以上用户提供这类支持。</p>
-<p>过度使用Guava函数式编程会导致冗长、混乱、可读性差而且低效的代码。这是迄今为止最容易（也是最经常）被滥用的部分，如果你想通过函数式风格达成一行代码，致使这行代码长到荒唐，Guava团队会泪流满面。</p>
-<p>比较如下代码：</p>
-<pre><code class="lang-java">Function&lt;String, Integer&gt; lengthFunction = <span class="hljs-keyword">new</span> Function&lt;String, Integer&gt;() {
-  <span class="hljs-keyword">public</span> Integer <span class="hljs-title">apply</span>(String string) {
-    <span class="hljs-keyword">return</span> string.length();
-  }
-};
-Predicate&lt;String&gt; allCaps = <span class="hljs-keyword">new</span> Predicate&lt;String&gt;() {
-  <span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">apply</span>(String string) {
-    <span class="hljs-keyword">return</span> CharMatcher.JAVA_UPPER_CASE.matchesAllOf(string);
-  }
-};
-Multiset&lt;Integer&gt; lengths = HashMultiset.create(
-  Iterables.transform(Iterables.filter(strings, allCaps), lengthFunction));
-</code></pre>
-<p>或FluentIterable的版本</p>
-<pre><code class="lang-java">Multiset&lt;Integer&gt; lengths = HashMultiset.create(
-  FluentIterable.from(strings)
-    .filter(<span class="hljs-keyword">new</span> Predicate&lt;String&gt;() {
-       <span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">apply</span>(String string) {
-         <span class="hljs-keyword">return</span> CharMatcher.JAVA_UPPER_CASE.matchesAllOf(string);
-       }
-     })
-    .transform(<span class="hljs-keyword">new</span> Function&lt;String, Integer&gt;() {
-       <span class="hljs-keyword">public</span> Integer <span class="hljs-title">apply</span>(String string) {
-         <span class="hljs-keyword">return</span> string.length();
-       }
-     }));
-</code></pre>
-<p>还有</p>
-<pre><code>Multiset&lt;Integer&gt; lengths = HashMultiset.create();
-for (String string : strings) {
-  if (CharMatcher.JAVA_UPPER_CASE.matchesAllOf(string)) {
-    lengths.add(string.length());
-  }
+                        <h1 id="concurrent-service-">Concurrent包里的Service框架浅析</h1>
+<p>译者：何一昕 校对：方腾飞</p>
+<h1 id="-">概述</h1>
+<p>Guava包里的Service接口用于封装一个服务对象的运行状态、包括start和stop等方法。例如web服务器，RPC服务器、计时器等可以实现这个接口。对此类服务的状态管理并不轻松、需要对服务的开启/关闭进行妥善管理、特别是在多线程环境下尤为复杂。Guava包提供了一些基础类帮助你管理复杂的状态转换逻辑和同步细节。</p>
+<h1 id="-">使用一个服务</h1>
+<p>一个服务正常生命周期有：</p>
+<p>Service.State.NEW
+Service.State.STARTING
+Service.State.RUNNING
+Service.State.STOPPING
+Service.State.TERMINATED
+服务一旦被停止就无法再重新启动了。如果服务在starting、running、stopping状态出现问题、会进入Service.State.FAILED.状态。调用 startAsync()方法可以异步开启一个服务,同时返回this对象形成方法调用链。注意：只有在当前服务的状态是NEW时才能调用startAsync()方法，因此最好在应用中有一个统一的地方初始化相关服务。停止一个服务也是类似的、使用异步方法stopAsync() 。但是不像startAsync(),多次调用这个方法是安全的。这是为了方便处理关闭服务时候的锁竞争问题。</p>
+<p>Service也提供了一些方法用于等待服务状态转换的完成:</p>
+<p>通过 addListener()方法异步添加监听器。此方法允许你添加一个 Service.Listener 、它会在每次服务状态转换的时候被调用。注意：最好在服务启动之前添加Listener（这时的状态是NEW）、否则之前已发生的状态转换事件是无法在新添加的Listener上被重新触发的。</p>
+<p>同步使用awaitRunning()。这个方法不能被打断、不强制捕获异常、一旦服务启动就会返回。如果服务没有成功启动，会抛出IllegalStateException异常。同样的， awaitTerminated() 方法会等待服务达到终止状态（TERMINATED 或者 FAILED）。两个方法都有重载方法允许传入超时时间。</p>
+<p>Service 接口本身实现起来会比较复杂、且容易碰到一些捉摸不透的问题。因此我们不推荐直接实现这个接口。而是请继承Guava包里已经封装好的基础抽象类。每个基础类支持一种特定的线程模型。</p>
+<p>基础实现类</p>
+<p>AbstractIdleService</p>
+<p> AbstractIdleService 类简单实现了Service接口、其在running状态时不会执行任何动作–因此在running时也不需要启动线程–但需要处理开启/关闭动作。要实现一个此类的服务，只需继承AbstractIdleService类，然后自己实现startUp() 和shutDown()方法就可以了。</p>
+<p>protected void startUp() {
+servlets.add(new GcStatsServlet());
 }
-</code></pre><p>即使用了静态导入，甚至把Function和Predicate的声明放到别的文件，第一种代码实现仍然不简洁，可读性差并且效率较低。</p>
-<p>截至JDK7，命令式代码仍应是默认和第一选择。不应该随便使用函数式风格，除非你绝对确定以下两点之一：</p>
-<p>使用函数式风格以后，整个工程的代码行会净减少。在上面的例子中，函数式版本用了11行， 命令式代码用了6行，把函数的定义放到另一个文件或常量中，并不能帮助减少总代码行。</p>
-<p>为了提高效率，转换集合的结果需要懒视图，而不是明确计算过的集合。此外，确保你已经阅读和重读了Effective Java的第55条，并且除了阅读本章后面的说明，你还真正做了性能测试并且有测试数据来证明函数式版本更快。</p>
-<p>请务必确保，当使用Guava函数式的时候，用传统的命令式做同样的事情不会更具可读性。尝试把代码写下来，看看它是不是真的那么糟糕？会不会比你想尝试的极其笨拙的函数式 更具可读性。</p>
-<h1 id="functions-predicates-">Functions[函数]和Predicates[断言]</h1>
-<p>本节只讨论直接与Function和Predicate打交道的Guava功能。一些其他工具类也和”函数式风格”相关，例如Iterables.concat(Iterable<Iterable>)，和其他用常量时间返回视图的方法。尝试看看2.3节的集合工具类。</p>
-<p>Guava提供两个基本的函数式接口：</p>
-<ul>
-<li>Function<A, B>，它声明了单个方法B apply(A input)。Function对象通常被预期为引用透明的——没有副作用——并且引用透明性中的”相等”语义与equals一致，如a.equals(b)意味着function.apply(a).equals(function.apply(b))。</li>
-<li>Predicate<T>，它声明了单个方法boolean apply(T input)。Predicate对象通常也被预期为无副作用函数，并且”相等”语义与equals一致。
-特殊的断言</li>
-</ul>
-<p>字符类型有自己特定版本的Predicate——CharMatcher，它通常更高效，并且在某些需求方面更有用。CharMatcher实现了Predicate<Character>，可以当作Predicate一样使用，要把Predicate转成CharMatcher，可以使用CharMatcher.forPredicate。更多细节请参考第6章-字符串处理。</p>
-<p>此外，对可比较类型和基于比较逻辑的Predicate，Range类可以满足大多数需求——它表示一个不可变区间。Range类实现了Predicate，用以判断值是否在区间内。例如，Range.atMost(2)就是个完全合法的Predicate<Integer>。更多使用Range的细节请参照第8章。</p>
-<p>操作Functions和Predicates</p>
-<p>Functions提供简便的Function构造和操作方法，包括：
-<code>forMap(Map&lt;A, B&gt;)
-compose(Function&lt;B, C&gt;, Function&lt;A, B&gt;)
-constant(T)
-identity()
-toStringFunction()</code>java
-细节请参考Javadoc。</p>
-<p>相应地，Predicates提供了更多构造和处理Predicate的方法，下面是一些例子：</p>
-<p>instanceOf(Class)    assignableFrom(Class)    contains(Pattern)
-in(Collection)    isNull()    alwaysFalse()
-alwaysTrue()    equalTo(Object)    compose(Predicate, Function)
-and(Predicate...)    or(Predicate...)    not(Predicate)
-细节请参考Javadoc。</p>
-<p>使用函数式编程
-Guava提供了很多工具方法，以便用Function或Predicate操作集合。这些方法通常可以在集合工具类找到，如Iterables，Lists，Sets，Maps，Multimaps等。</p>
-<p>断言</p>
-<p>断言的最基本应用就是过滤集合。所有Guava过滤方法都返回”视图”——译者注：即并非用一个新的集合表示过滤，而只是基于原集合的视图。</p>
-<p>集合类型    过滤方法
-Iterable    Iterables.filter(Iterable, Predicate)FluentIterable.filter(Predicate)
-Iterator    Iterators.filter(Iterator, Predicate)
-Collection    Collections2.filter(Collection, Predicate)
-Set    Sets.filter(Set, Predicate)
-SortedSet    Sets.filter(SortedSet, Predicate)
-Map    Maps.filterKeys(Map, Predicate)Maps.filterValues(Map, Predicate)Maps.filterEntries(Map, Predicate)
-SortedMap    Maps.filterKeys(SortedMap, Predicate)Maps.filterValues(SortedMap, Predicate)Maps.filterEntries(SortedMap, Predicate)
-Multimap    Multimaps.filterKeys(Multimap, Predicate)Multimaps.filterValues(Multimap, Predicate)Multimaps.filterEntries(Multimap, Predicate)
-*List的过滤视图被省略了，因为不能有效地支持类似get(int)的操作。请改用Lists.newArrayList(Collections2.filter(list, predicate))做拷贝过滤。</p>
-<p>除了简单过滤，Guava另外提供了若干用Predicate处理Iterable的工具——通常在Iterables工具类中，或者是FluentIterable的”fluent”（链式调用）方法。</p>
-<p>Iterables方法签名    说明    另请参见
-boolean all(Iterable, Predicate)    是否所有元素满足断言？懒实现：如果发现有元素不满足，不会继续迭代    Iterators.all(Iterator, Predicate)FluentIterable.allMatch(Predicate)
-boolean any(Iterable, Predicate)    是否有任意元素满足元素满足断言？懒实现：只会迭代到发现满足的元素    Iterators.any(Iterator, Predicate)FluentIterable.anyMatch(Predicate)
-T find(Iterable, Predicate)    循环并返回一个满足元素满足断言的元素，如果没有则抛出NoSuchElementException    Iterators.find(Iterator, Predicate)
-Iterables.find(Iterable, Predicate, T default)
-Iterators.find(Iterator, Predicate, T default)
-Optional<T> tryFind(Iterable, Predicate)    返回一个满足元素满足断言的元素，若没有则返回Optional.absent()    Iterators.find(Iterator, Predicate)
-Iterables.find(Iterable, Predicate, T default)
-Iterators.find(Iterator, Predicate, T default)
-indexOf(Iterable, Predicate)    返回第一个满足元素满足断言的元素索引值，若没有返回-1    Iterators.indexOf(Iterator, Predicate)
-removeIf(Iterable, Predicate)    移除所有满足元素满足断言的元素，实际调用Iterator.remove()方法    Iterators.removeIf(Iterator, Predicate)
-函数</p>
-<p>到目前为止，函数最常见的用途为转换集合。同样，所有的Guava转换方法也返回原集合的视图。</p>
-<p>集合类型    转换方法
-Iterable    Iterables.transform(Iterable, Function)FluentIterable.transform(Function)
-Iterator    Iterators.transform(Iterator, Function)
-Collection    Collections2.transform(Collection, Function)
-List    Lists.transform(List, Function)
-Map<em>    Maps.transformValues(Map, Function)Maps.transformEntries(Map, EntryTransformer)
-SortedMap</em>    Maps.transformValues(SortedMap, Function)Maps.transformEntries(SortedMap, EntryTransformer)
-Multimap<em>    Multimaps.transformValues(Multimap, Function)Multimaps.transformEntries(Multimap, EntryTransformer)
-ListMultimap</em>    Multimaps.transformValues(ListMultimap, Function)Multimaps.transformEntries(ListMultimap, EntryTransformer)
-Table    Tables.transformValues(Table, Function)
-*Map和Multimap有特殊的方法，其中有个EntryTransformer<K, V1, V2>参数，它可以使用旧的键值来计算，并且用计算结果替换旧值。</p>
-<p>*对Set的转换操作被省略了，因为不能有效支持contains(Object)操作——译者注：懒视图实际上不会全部计算转换后的Set元素，因此不能高效地支持contains(Object)。请改用Sets.newHashSet(Collections2.transform(set, function))进行拷贝转换。</p>
-<p>01
-List<String> names;
-02
-Map<String, Person> personWithName;
-03
-List<Person> people = Lists.transform(names, Functions.forMap(personWithName));
-04</p>
-<p>05
-ListMultimap<String, String> firstNameToLastNames;
-06
-// maps first names to all last names of people with that first name
-07</p>
-<p>08
-ListMultimap<String, String> firstNameToName = Multimaps.transformEntries(firstNameToLastNames,
-09
-    new EntryTransformer<String, String, String> () {
-10
-        public String transformEntry(String firstName, String lastName) {
-11
-            return firstName + &quot; &quot; + lastName;
-12
-        }
-13
-    });
-可以组合Function使用的类包括：</p>
-<p>Ordering    Ordering.onResultOf(Function)
-Predicate    Predicates.compose(Predicate, Function)
-Equivalence    Equivalence.onResultOf(Function)
-Supplier    Suppliers.compose(Function, Supplier)
-Function    Functions.compose(Function, Function)
-此外，ListenableFuture API支持转换ListenableFuture。Futures也提供了接受AsyncFunction参数的方法。AsyncFunction是Function的变种，它允许异步计算值。</p>
-<p>Futures.transform(ListenableFuture, Function)
-Futures.transform(ListenableFuture, Function, Executor)
-Futures.transform(ListenableFuture, AsyncFunction)
-Futures.transform(ListenableFuture, AsyncFunction, Executor)</p>
+protected void shutDown() {}</p>
+<p>如上面的例子、由于任何请求到GcStatsServlet时已经会有现成线程处理了，所以在服务运行时就不需要做什么额外动作了。</p>
+<p>AbstractExecutionThreadService</p>
+<p>AbstractExecutionThreadService 通过单线程处理启动、运行、和关闭等操作。你必须重载run()方法，同时需要能响应停止服务的请求。具体的实现可以在一个循环内做处理：</p>
+<p> public void run() {
+   while (isRunning()) {
+     // perform a unit of work
+   }
+ }</p>
+<p>另外，你还可以重载triggerShutdown()方法让run()方法结束返回。</p>
+<p>重载startUp()和shutDown()方法是可选的，不影响服务本身状态的管理</p>
+<p> protected void startUp() {
+dispatcher.listenForConnections(port, queue);
+ }
+ protected void run() {
+   Connection connection;
+   while ((connection = queue.take() != POISON)) {
+     process(connection);
+   }
+ }
+ protected void triggerShutdown() {
+   dispatcher.stopListeningForConnections(queue);
+   queue.put(POISON);
+ }</p>
+<p>start()内部会调用startUp()方法，创建一个线程、然后在线程内调用run()方法。stop()会调用 triggerShutdown()方法并且等待线程终止。</p>
+<p>AbstractScheduledService</p>
+<p>AbstractScheduledService类用于在运行时处理一些周期性的任务。子类可以实现 runOneIteration()方法定义一个周期执行的任务，以及相应的startUp()和shutDown()方法。为了能够描述执行周期，你需要实现scheduler()方法。通常情况下，你可以使用AbstractScheduledService.Scheduler类提供的两种调度器：newFixedRateSchedule(initialDelay, delay, TimeUnit)  和newFixedDelaySchedule(initialDelay, delay, TimeUnit)，类似于JDK并发包中ScheduledExecutorService类提供的两种调度方式。如要自定义schedules则可以使用 CustomScheduler类来辅助实现；具体用法见javadoc。</p>
+<p>AbstractService</p>
+<p>如需要自定义的线程管理、可以通过扩展 AbstractService类来实现。一般情况下、使用上面的几个实现类就已经满足需求了，但如果在服务执行过程中有一些特定的线程处理需求、则建议继承AbstractService类。</p>
+<p>继承AbstractService方法必须实现两个方法.</p>
+<p>doStart():  首次调用startAsync()时会同时调用doStart(),doStart()内部需要处理所有的初始化工作、如果启动成功则调用notifyStarted()方法；启动失败则调用notifyFailed()
+doStop():  首次调用stopAsync()会同时调用doStop(),doStop()要做的事情就是停止服务，如果停止成功则调用 notifyStopped()方法；停止失败则调用 notifyFailed()方法。
+doStart和doStop方法的实现需要考虑下性能，尽可能的低延迟。如果初始化的开销较大，如读文件，打开网络连接，或者其他任何可能引起阻塞的操作，建议移到另外一个单独的线程去处理。</p>
+<p>使用ServiceManager</p>
+<p>除了对Service接口提供基础的实现类，Guava还提供了 ServiceManager类使得涉及到多个Service集合的操作更加容易。通过实例化ServiceManager类来创建一个Service集合，你可以通过以下方法来管理它们：</p>
+<p>startAsync()  ： 将启动所有被管理的服务。如果当前服务的状态都是NEW的话、那么你只能调用该方法一次、这跟 Service#startAsync()是一样的。
+stopAsync() ：将停止所有被管理的服务。
+addListener ：会添加一个ServiceManager.Listener，在服务状态转换中会调用该Listener
+awaitHealthy() ：会等待所有的服务达到Running状态
+awaitStopped()：会等待所有服务达到终止状态
+检测类的方法有：</p>
+<p>isHealthy()  ：如果所有的服务处于Running状态、会返回True
+servicesByState()：以状态为索引返回当前所有服务的快照
+startupTimes() ：返回一个Map对象，记录被管理的服务启动的耗时、以毫秒为单位，同时Map默认按启动时间排序。
+我们建议整个服务的生命周期都能通过ServiceManager来管理，不过即使状态转换是通过其他机制触发的、也不影响ServiceManager方法的正确执行。例如：当一个服务不是通过startAsync()、而是其他机制启动时，listeners 仍然可以被正常调用、awaitHealthy()也能够正常工作。ServiceManager 唯一强制的要求是当其被创建时所有的服务必须处于New状态。</p>
+<p>附：TestCase、也可以作为练习Demo</p>
 
                     
                     </section>
@@ -721,10 +645,10 @@ Futures.transform(ListenableFuture, AsyncFunction, Executor)</p>
         </div>
 
         
-        <a href="../Caches/README.html" class="navigation navigation-prev " aria-label="Previous page: 缓存[Caches]"><i class="fa fa-angle-left"></i></a>
+        <a href="../Concurrency/ListenableFuture.html" class="navigation navigation-prev " aria-label="Previous page: ListenableFuture"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../Concurrency/README.html" class="navigation navigation-next " aria-label="Next page: 并发[Concurrency]"><i class="fa fa-angle-right"></i></a>
+        <a href="../Strings/README.html" class="navigation navigation-next " aria-label="Next page: 字符串处理[Strings]"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
